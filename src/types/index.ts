@@ -1,3 +1,5 @@
+// 複数のページやコンポーネントなどで共有する型について定義
+
 import type { Dispatch, SetStateAction } from 'react';
 
 // --- 型定義 (TypeScriptで追加) ---
