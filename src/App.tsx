@@ -14,32 +14,7 @@ import {
 // --- TooltipPropsの型インポートを修正 ---
 import type { TooltipProps } from 'recharts';
 import { Search, Star, X, Plus, BarChart2, Home } from 'lucide-react';
-
-// --- 型定義 (TypeScriptで追加) ---
-interface Lab {
-  id: string;
-  name: string;
-  content: string;
-  coreTime: string;
-  schedule: string;
-  style: string;
-  career: string;
-}
-
-interface Review {
-  id: number;
-  labId: string;
-  labName: string;
-  strict: number;
-  supportive: number;
-  comment: string;
-}
-
-interface LabWithReview extends Lab {
-  avgStrict: number;
-  avgSupportive: number;
-  reviewCount: number;
-}
+import type { Lab, Review, LabWithReview } from './types/index'
 
 // --- 初期データ ---
 const initialLabs: Lab[] = [
@@ -58,7 +33,6 @@ const initialReviews: Review[] = [
     { id: 5, labId: 'ai_robotics', labName: 'AIロボティクス研究室', strict: 5, supportive: 2, comment: '完全な放置。自分でテーマを見つけられる人向け。' },
     { id: 6, labId: 'human_interface', labName: 'ヒューマンインタフェース研究室', strict: 4, supportive: 6, comment: '和気あいあいとした雰囲気で楽しい。' },
 ];
-
 
 // --- コンポーネントのProps型定義 ---
 type Page = 'home' | 'chart' | 'form';
