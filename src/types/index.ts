@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from 'react';
+
 // --- 型定義 (TypeScriptで追加) ---
 export interface Lab {
   id: string;
@@ -24,3 +26,31 @@ export interface LabWithReview extends Lab {
   reviewCount: number;
 }
 
+// --- コンポーネントのProps型定義 ---
+export type Page = 'home' | 'chart' | 'form';
+
+export interface HeaderProps {
+  setPage: Dispatch<SetStateAction<Page>>;
+}
+
+export interface ReviewModalProps {
+  lab: LabWithReview | null;
+  reviews: Review[];
+  onClose: () => void;
+}
+
+export interface HomePageProps {
+  labs: Lab[];
+  reviews: Review[];
+  onReviewClick: (lab: LabWithReview) => void;
+}
+
+export interface ReviewChartPageProps {
+  reviews: Review[];
+}
+
+export interface ReviewFormPageProps {
+  labs: Lab[];
+  setPage: Dispatch<SetStateAction<Page>>;
+  setReviews: Dispatch<SetStateAction<Review[]>>;
+}

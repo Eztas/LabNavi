@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 // --- 型定義のためのインポートを修正 ---
-import type { FC, Dispatch, SetStateAction } from 'react';
+import type { FC } from 'react';
 import {
   ResponsiveContainer,
   ScatterChart,
@@ -14,7 +14,9 @@ import {
 // --- TooltipPropsの型インポートを修正 ---
 import type { TooltipProps } from 'recharts';
 import { Search, Star, X, Plus, BarChart2, Home } from 'lucide-react';
-import type { Lab, Review, LabWithReview } from './types/index'
+import type { Lab, Review, LabWithReview, 
+              Page, HeaderProps, ReviewModalProps, HomePageProps,
+              ReviewChartPageProps, ReviewFormPageProps } from './types/'
 
 // --- 初期データ ---
 const initialLabs: Lab[] = [
@@ -33,35 +35,6 @@ const initialReviews: Review[] = [
     { id: 5, labId: 'ai_robotics', labName: 'AIロボティクス研究室', strict: 5, supportive: 2, comment: '完全な放置。自分でテーマを見つけられる人向け。' },
     { id: 6, labId: 'human_interface', labName: 'ヒューマンインタフェース研究室', strict: 4, supportive: 6, comment: '和気あいあいとした雰囲気で楽しい。' },
 ];
-
-// --- コンポーネントのProps型定義 ---
-type Page = 'home' | 'chart' | 'form';
-
-interface HeaderProps {
-  setPage: Dispatch<SetStateAction<Page>>;
-}
-
-interface ReviewModalProps {
-  lab: LabWithReview | null;
-  reviews: Review[];
-  onClose: () => void;
-}
-
-interface HomePageProps {
-  labs: Lab[];
-  reviews: Review[];
-  onReviewClick: (lab: LabWithReview) => void;
-}
-
-interface ReviewChartPageProps {
-  reviews: Review[];
-}
-
-interface ReviewFormPageProps {
-  labs: Lab[];
-  setPage: Dispatch<SetStateAction<Page>>;
-  setReviews: Dispatch<SetStateAction<Review[]>>;
-}
 
 
 // --- コンポーネント ---
