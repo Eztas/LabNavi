@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useMemo, FC, Dispatch, SetStateAction } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+// --- 型定義のためのインポートを修正 ---
+import type { FC, Dispatch, SetStateAction } from 'react';
 import {
   ResponsiveContainer,
   ScatterChart,
@@ -8,8 +10,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  TooltipProps,
 } from 'recharts';
+// --- TooltipPropsの型インポートを修正 ---
+import type { TooltipProps } from 'recharts';
 import { Search, Star, X, Plus, BarChart2, Home } from 'lucide-react';
 
 // --- 型定義 (TypeScriptで追加) ---
@@ -244,10 +247,10 @@ const ReviewChartPage: FC<ReviewChartPageProps> = ({ reviews }) => {
       labReviews[review.labId].supportive.push(review.supportive);
     });
 
-    return Object.values(labReviews).map(lab => ({
+    return Object.values(labReviews).map((lab: any) => ({
       name: lab.name,
-      strict: lab.strict.reduce((a, b) => a + b, 0) / lab.strict.length,
-      supportive: lab.supportive.reduce((a, b) => a + b, 0) / lab.supportive.length,
+      strict: lab.strict.reduce((a: number, b: number) => a + b, 0) / lab.strict.length,
+      supportive: lab.supportive.reduce((a: number, b: number) => a + b, 0) / lab.supportive.length,
       count: lab.strict.length,
     }));
   }, [reviews]);
