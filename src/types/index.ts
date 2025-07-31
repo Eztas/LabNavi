@@ -34,9 +34,3 @@ export type Page = 'home' | 'chart' | 'form';
 export interface HeaderProps {
   setPage: Dispatch<SetStateAction<Page>>;
 }
-
-export interface ReviewModalProps {
-  lab: LabWithReview | null;
-  reviews: Review[];
-  onClose: () => void;
-}
