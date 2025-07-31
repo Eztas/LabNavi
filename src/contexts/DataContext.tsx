@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useMemo, useContext } from 'react';
 import type { FC, ReactNode, Dispatch, SetStateAction } from 'react';
 import type { Lab, Review, Page } from '../types';
-import { initialLabs, initialReviews } from '../data/';
+import { initialLabs, initialReviews } from '../data';
 
 // Contextが提供する値の型を定義
 interface DataContextType {
