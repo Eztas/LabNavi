@@ -40,9 +40,3 @@ export interface ReviewModalProps {
   reviews: Review[];
   onClose: () => void;
 }
-
-export interface HomePageProps {
-  labs: Lab[];
-  reviews: Review[];
-  onReviewClick: (lab: LabWithReview) => void;
-}
