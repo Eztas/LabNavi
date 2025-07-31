@@ -26,5 +26,5 @@ export interface LabWithReview extends Lab {
   reviewCount: number;
 }
 
-// --- コンポーネントのProps型定義 ---
+// pageの型定義, これを状態として管理することで、状態がセットされるたびに際レンダリングが自動で開始
 export type Page = 'home' | 'chart' | 'form';
