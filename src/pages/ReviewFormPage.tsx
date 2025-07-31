@@ -3,16 +3,12 @@
 import React, { useState } from 'react';
 
 import type { FC } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
-import type { Review, Lab, Page } from '.././types/'
+import type { Review } from '.././types/'
 
-export interface ReviewFormPageProps {
-  labs: Lab[];
-  setPage: Dispatch<SetStateAction<Page>>;
-  setReviews: Dispatch<SetStateAction<Review[]>>;
-}
+import { useDataContext } from '.././contexts/DataContext';
 
-const ReviewFormPage: FC<ReviewFormPageProps> = ({ labs, setPage, setReviews }) => {
+const ReviewFormPage: FC = () => {
+  const { labs, setPage, setReviews } = useDataContext();
   const [labId, setLabId] = useState<string>('');
   const [strict, setStrict] = useState<number>(5);
   const [supportive, setSupportive] = useState<number>(5);
