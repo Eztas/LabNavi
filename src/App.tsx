@@ -16,7 +16,7 @@ import { useDataContext } from './contexts/DataContext';
 
 // メインのAppコンポーネント
 export default function App() {
-  const { labs, reviews, page } = useDataContext();
+  const { page } = useDataContext();
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedLab, setSelectedLab] = useState<LabWithReview | null>(null);
 
@@ -44,7 +44,7 @@ export default function App() {
         return <ReviewFormPage/>;
       case 'home':
       default:
-        return <HomePage labs={labs} reviews={reviews} onReviewClick={handleReviewClick} />;
+        return <HomePage onReviewClick={handleReviewClick} />;
     }
   };
 
