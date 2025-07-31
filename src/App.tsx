@@ -4,7 +4,7 @@ import type { FC } from 'react';
 // --- TooltipPropsの型インポートを修正 ---
 import type { TooltipProps } from 'recharts';
 import type { Lab, Review, LabWithReview, 
-              Page, HeaderProps, ReviewModalProps, HomePageProps,
+              Page, ReviewModalProps, HomePageProps,
               ReviewChartPageProps, ReviewFormPageProps } from './types/'
 
 // 初期データ
@@ -21,29 +21,12 @@ import {
   Tooltip,
 } from 'recharts';
 
-import { Search, Star, X, Plus, BarChart2, Home } from 'lucide-react';
+import { Search, Star, X } from 'lucide-react';
+
+// コンポーネント
+import Header from './components/Header';
 
 // --- コンポーネント ---
-
-// ヘッダーコンポーネント
-const Header: FC<HeaderProps> = ({ setPage }) => (
-  <header className="bg-white shadow-md sticky top-0 z-20">
-    <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 className="text-xl md:text-2xl font-bold text-gray-800">研究室レビューサイト</h1>
-      <nav className="flex items-center space-x-2">
-        <button onClick={() => setPage('home')} className="p-2 rounded-full hover:bg-gray-100 transition-colors" title="ホーム">
-          <Home className="h-5 w-5 text-gray-600" />
-        </button>
-        <button onClick={() => setPage('chart')} className="p-2 rounded-full hover:bg-gray-100 transition-colors" title="レビューグラフ">
-          <BarChart2 className="h-5 w-5 text-gray-600" />
-        </button>
-        <button onClick={() => setPage('form')} className="p-2 rounded-full hover:bg-gray-100 transition-colors" title="レビュー投稿">
-          <Plus className="h-5 w-5 text-gray-600" />
-        </button>
-      </nav>
-    </div>
-  </header>
-);
 
 // レビュー詳細モーダル
 const ReviewModal: FC<ReviewModalProps> = ({ lab, reviews, onClose }) => {
