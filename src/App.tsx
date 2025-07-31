@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 // --- 型定義のためのインポート ---
-import type { Lab, Review, LabWithReview, Page } from './types/'
-
-// 初期データ
-import {initialLabs, initialReviews } from './data/'
+import type { LabWithReview } from './types/'
 
 // コンポーネント
 import Header from './components/Header';
@@ -14,18 +11,17 @@ import HomePage from './pages/HomePage';
 import ReviewChartPage from './pages/ReviewChartPage';
 import ReviewFormPage from './pages/ReviewFormPage';
 
+// コンテキスト
+import { useDataContext } from './contexts/DataContext';
+
 // メインのAppコンポーネント
 export default function App() {
-  const [page, setPage] = useState<Page>('home');
-  const [labs, setLabs] = useState<Lab[]>([]);
-  const [reviews, setReviews] = useState<Review[]>([]);
+  const { labs, reviews, setReviews, page, setPage } = useDataContext();
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedLab, setSelectedLab] = useState<LabWithReview | null>(null);
 
   useEffect(() => {
     // データベースの代わりに初期データをセットする
-    setLabs(initialLabs);
-    setReviews(initialReviews);
     setLoading(false);
   }, []);
 
