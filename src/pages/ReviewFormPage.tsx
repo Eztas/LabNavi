@@ -6,13 +6,13 @@ import type { FC } from 'react';
 import type { Review, ReviewFormPageProps } from '.././types/'
 
 const ReviewFormPage: FC<ReviewFormPageProps> = ({ labs, setPage, setReviews }) => {
-  const [labId, setLabId] = useState('');
-  const [strict, setStrict] = useState(5);
-  const [supportive, setSupportive] = useState(5);
-  const [comment, setComment] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [labId, setLabId] = useState<string>('');
+  const [strict, setStrict] = useState<number>(5);
+  const [supportive, setSupportive] = useState<number>(5);
+  const [comment, setComment] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+  const [success, setSuccess] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
