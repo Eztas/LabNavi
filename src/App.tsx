@@ -43,7 +43,7 @@ export default function App() {
     }
     switch (page) {
       case 'chart':
-        return <ReviewChartPage />;
+        return <ReviewChartPage/>;
       case 'form':
         return <ReviewFormPage labs={labs} setPage={setPage} setReviews={setReviews} />;
       case 'home':
@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <div className="bg-gray-50 min-h-screen font-sans">
-      <Header setPage={setPage} />
+      <Header/>
       <main className="container mx-auto p-4 md:p-6">
         {renderPage()}
       </main>

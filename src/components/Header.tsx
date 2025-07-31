@@ -1,15 +1,12 @@
 import type { FC } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
-import type { Page } from '.././types/'
-
 import { Plus, BarChart2, Home } from 'lucide-react';
 
-interface HeaderProps {
-  setPage: Dispatch<SetStateAction<Page>>;
-}
+import { useDataContext } from '.././contexts/DataContext';
 
 // ヘッダーコンポーネント
-const Header: FC<HeaderProps> = ({ setPage }) => (
+const Header: FC = () => {
+  const { setPage } = useDataContext(); // Contextから直接setPageを取得
+  return (
   <header className="bg-white shadow-md sticky top-0 z-20">
     <div className="container mx-auto px-4 py-3 flex justify-between items-center">
       <h1 className="text-xl md:text-2xl font-bold text-gray-800">LabNavi</h1>
@@ -26,6 +23,7 @@ const Header: FC<HeaderProps> = ({ setPage }) => (
       </nav>
     </div>
   </header>
-);
+  )
+};
 
 export default Header;
