@@ -12,7 +12,7 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ setPage }) => (
   <header className="bg-white shadow-md sticky top-0 z-20">
     <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 className="text-xl md:text-2xl font-bold text-gray-800">研究室レビューサイト</h1>
+      <h1 className="text-xl md:text-2xl font-bold text-gray-800">LabNavi</h1>
       <nav className="flex items-center space-x-2">
         <button onClick={() => setPage('home')} className="p-2 rounded-full hover:bg-gray-100 transition-colors" title="ホーム">
           <Home className="h-5 w-5 text-gray-600" />
