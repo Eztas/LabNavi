@@ -3,7 +3,14 @@
 import React, { useState } from 'react';
 
 import type { FC } from 'react';
-import type { Review, ReviewFormPageProps } from '.././types/'
+import type { Dispatch, SetStateAction } from 'react';
+import type { Review, Lab, Page } from '.././types/'
+
+export interface ReviewFormPageProps {
+  labs: Lab[];
+  setPage: Dispatch<SetStateAction<Page>>;
+  setReviews: Dispatch<SetStateAction<Review[]>>;
+}
 
 const ReviewFormPage: FC<ReviewFormPageProps> = ({ labs, setPage, setReviews }) => {
   const [labId, setLabId] = useState<string>('');

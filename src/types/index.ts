@@ -50,9 +50,3 @@ export interface HomePageProps {
 export interface ReviewChartPageProps {
   reviews: Review[];
 }
-
-export interface ReviewFormPageProps {
-  labs: Lab[];
-  setPage: Dispatch<SetStateAction<Page>>;
-  setReviews: Dispatch<SetStateAction<Review[]>>;
-}
