@@ -13,7 +13,7 @@ interface HomePageProps {
 
 // ホームページコンポーネント
 const HomePage: FC<HomePageProps> = ({ labs, reviews, onReviewClick }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   const filteredLabs: LabWithReview[] = useMemo(() => {
     return labs
