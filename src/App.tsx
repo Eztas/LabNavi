@@ -43,7 +43,7 @@ export default function App() {
     }
     switch (page) {
       case 'chart':
-        return <ReviewChartPage reviews={reviews} />;
+        return <ReviewChartPage />;
       case 'form':
         return <ReviewFormPage labs={labs} setPage={setPage} setReviews={setReviews} />;
       case 'home':
