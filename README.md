@@ -1,69 +1,33 @@
-# React + TypeScript + Vite
+# LabNavi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Concept
 
-Currently, two official plugins are available:
+研究室を探す上で参考になる情報を集めたアプリケーション
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+研究室を探す大学生や、研究室を元に大学を探している高校生の後悔しない選択を支える
 
-## Expanding the ESLint configuration
+## Member
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [yukitake212](https://github.com/yukitake212)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [Eztas](https://github.com/Eztas)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- [Tomita286](https://github.com/Tomita286)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [TowaYokoyama](https://github.com/TowaYokoyama)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 匿名
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Skills
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Frontend
+[![tools](https://skillicons.dev/icons?i=react,ts,vite,tailwind,html&perline=12)](https://skillicons.dev)
+
+### Others
+[![tools](https://skillicons.dev/icons?i=git,github,vscode&perline=12)](https://skillicons.dev)
+
+## About This Project
+
+[技育CAMPハッカソン 2025年度 vol.9](https://talent.supporterz.jp/events/98b0c3d3-a5d3-4083-b11d-48b71f97fded/)にて作成
+
+2025/7/25~8/3
