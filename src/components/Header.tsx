@@ -1,7 +1,12 @@
 import type { FC } from 'react';
-import type { HeaderProps } from '.././types/'
+import type { Dispatch, SetStateAction } from 'react';
+import type { Page } from '.././types/'
 
 import { Plus, BarChart2, Home } from 'lucide-react';
+
+interface HeaderProps {
+  setPage: Dispatch<SetStateAction<Page>>;
+}
 
 // ヘッダーコンポーネント
 const Header: FC<HeaderProps> = ({ setPage }) => (

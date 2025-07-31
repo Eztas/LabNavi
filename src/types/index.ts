@@ -1,7 +1,5 @@
 // 複数のページやコンポーネントなどで共有する型について定義
 
-import type { Dispatch, SetStateAction } from 'react';
-
 // --- 型定義 (TypeScriptで追加) ---
 export interface Lab {
   id: string;
@@ -30,7 +28,3 @@ export interface LabWithReview extends Lab {
 
 // --- コンポーネントのProps型定義 ---
 export type Page = 'home' | 'chart' | 'form';
-
-export interface HeaderProps {
-  setPage: Dispatch<SetStateAction<Page>>;
-}
