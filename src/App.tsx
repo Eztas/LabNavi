@@ -54,7 +54,7 @@ export default function App() {
       <main className="container mx-auto p-4 md:p-6">
         {renderPage()}
       </main>
-      <ReviewModal lab={selectedLab} reviews={reviews} onClose={handleCloseModal} />
+      <ReviewModal lab={selectedLab} onClose={handleCloseModal} />
     </div>
   );
 }
