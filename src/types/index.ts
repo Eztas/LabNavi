@@ -46,7 +46,3 @@ export interface HomePageProps {
   reviews: Review[];
   onReviewClick: (lab: LabWithReview) => void;
 }
-
-export interface ReviewChartPageProps {
-  reviews: Review[];
-}

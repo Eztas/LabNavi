@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import type { FC } from 'react';
 // --- TooltipPropsの型インポートを修正 ---
 import type { TooltipProps } from 'recharts';
-import type { ReviewChartPageProps } from '.././types/'
+import type { Review } from '.././types/'
 
 import {
   ResponsiveContainer,
@@ -15,6 +15,10 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts';
+
+interface ReviewChartPageProps {
+  reviews: Review[];
+}
 
 // レビューグラフページ
 const ReviewChartPage: FC<ReviewChartPageProps> = ({ reviews }) => {
