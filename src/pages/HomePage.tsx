@@ -1,18 +1,19 @@
 import { useState, useMemo } from 'react';
 
 import type { FC } from 'react';
-import type { Lab, Review, LabWithReview } from '.././types/'
+import type { LabWithReview } from '.././types/'
 
 import { Search, Star } from 'lucide-react';
 
+import { useDataContext } from '.././contexts/DataContext';
+
 interface HomePageProps {
-  labs: Lab[];
-  reviews: Review[];
   onReviewClick: (lab: LabWithReview) => void;
 }
 
 // ホームページコンポーネント
-const HomePage: FC<HomePageProps> = ({ labs, reviews, onReviewClick }) => {
+const HomePage: FC<HomePageProps> = ({ onReviewClick }) => {
+  const { labs, reviews } = useDataContext();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const filteredLabs: LabWithReview[] = useMemo(() => {

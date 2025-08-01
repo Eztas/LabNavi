@@ -3,17 +3,19 @@
 // 画面の最前面に優先して出てくる詳細なレビュー一覧のこと
 
 import type { FC } from 'react';
-import type { Review, LabWithReview } from '.././types/'
+import type { LabWithReview } from '.././types/'
 
 import { X } from 'lucide-react';
 
+import { useDataContext } from '.././contexts/DataContext';
+
 export interface ReviewModalProps {
   lab: LabWithReview | null;
-  reviews: Review[];
   onClose: () => void;
 }
 
-const ReviewModal: FC<ReviewModalProps> = ({ lab, reviews, onClose }) => {
+const ReviewModal: FC<ReviewModalProps> = ({ lab, onClose }) => {
+    const { reviews } = useDataContext();
     if (!lab) return null;
 
     const labReviews = reviews.filter(r => r.labId === lab.id);

@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import type { FC } from 'react';
 // --- TooltipPropsの型インポートを修正 ---
 import type { TooltipProps } from 'recharts';
-import type { Review } from '.././types/'
 
 import {
   ResponsiveContainer,
@@ -16,12 +15,12 @@ import {
   Tooltip,
 } from 'recharts';
 
-interface ReviewChartPageProps {
-  reviews: Review[];
-}
+import { useDataContext } from '.././contexts/DataContext';
 
 // レビューグラフページ
-const ReviewChartPage: FC<ReviewChartPageProps> = ({ reviews }) => {
+const ReviewChartPage: FC = () => {
+  const { reviews } = useDataContext(); // Contextから直接setPageを取得
+
   const chartData = useMemo(() => {
     const labReviews: { [key: string]: { name: string; strict: number[]; supportive: number[] } } = {};
     reviews.forEach(review => {
