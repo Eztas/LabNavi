@@ -49,7 +49,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen font-sans">
+    <div className="bg-gray-50 min-h-screen w-screen font-sans">
       <Header/>
       <main className="container mx-auto p-4 md:p-6">
         {renderPage()}
