@@ -22,6 +22,15 @@ export interface Review {
   comment: string;
 }
 
+export interface RadarReview {
+  labId: string;
+  labName: string;
+  motivation: number;
+  equipment: number;
+  longTermGrowth: number;
+  bottomUp: number;
+}
+
 export interface LabWithReview extends Lab {
   avgStrict: number;
   avgSupportive: number;

@@ -1,5 +1,4 @@
-import type { Lab, Review } from '.././types/'
-import type { Award } from '../types';
+import type { Lab, Review, RadarReview, Award } from '.././types/'
 
 // --- 初期データ ---
 export const initialLabs: Lab[] = [
@@ -67,6 +66,65 @@ export const initialReviews: Review[] = [
     { id: 4, labId: 'materials_science', labName: '材料科学研究室', strict: 9, supportive: 9, comment: 'コアタイムが長く大変だが、その分成長できる環境。' },
     { id: 5, labId: 'ai_robotics', labName: 'AIロボティクス研究室', strict: 5, supportive: 2, comment: '完全な放置。自分でテーマを見つけられる人向け。' },
     { id: 6, labId: 'human_interface', labName: 'ヒューマンインタフェース研究室', strict: 4, supportive: 6, comment: '和気あいあいとした雰囲気で楽しい。' },
+];
+
+export const initialRadarReviews: RadarReview[] = [
+  {
+    labId: 'system_control',
+    labName: 'システム制御論研究室',
+    motivation: 4,
+    equipment: 5,
+    longTermGrowth: 4,
+    bottomUp: 3,
+  },
+  {
+    labId: 'system_control',
+    labName: 'システム制御論研究室',
+    motivation: 5,
+    equipment: 4,
+    longTermGrowth: 5,
+    bottomUp: 4,
+  },
+  {
+    labId: 'communication_theory',
+    labName: '通信方式研究室',
+    motivation: 2,
+    equipment: 3,
+    longTermGrowth: 3,
+    bottomUp: 5,
+  },
+  {
+    labId: 'materials_science',
+    labName: '材料科学研究室',
+    motivation: 5,
+    equipment: 5,
+    longTermGrowth: 5,
+    bottomUp: 2,
+  },
+  {
+    labId: 'ai_robotics',
+    labName: 'AIロボティクス研究室',
+    motivation: 3,
+    equipment: 3,
+    longTermGrowth: 2,
+    bottomUp: 1,
+  },
+  {
+    labId: 'human_interface',
+    labName: 'ヒューマンインタフェース研究室',
+    motivation: 5,
+    equipment: 4,
+    longTermGrowth: 4,
+    bottomUp: 5,
+  },
+  {
+    labId: 'materials_science',
+    labName: '材料科学研究室',
+    motivation: 4,
+    equipment: 4,
+    longTermGrowth: 5,
+    bottomUp: 1,
+  },
 ];
 
 export const initialAwards: Award[] = [
