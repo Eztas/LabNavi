@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import type { FC } from 'react';
+import { initialRadarReviews } from '.././data';
 import {
   ResponsiveContainer,
   RadarChart,
@@ -27,7 +28,6 @@ type RaderAxis = Omit<RadarReview, 'labId' | 'labName'>;
 // コンポーネントが受け取るpropsの型
 interface ReviewRadarChartPageProps {
   labId: string;           // 表示対象の研究室ID
-  reviews: RadarReview[];  // すべてのレビューデータ
 }
 
 // 日本語のラベルを定義
@@ -38,14 +38,16 @@ const reviewLabels: { [K in keyof RaderAxis]: string } = {
   bottomUp: 'ボトムアップ',
 };
 
+const radarReviews = initialRadarReviews;
+
 // レビューグラフページ
-const ReviewRadarChartPage: FC<ReviewRadarChartPageProps> = ({ labId, reviews }) => {
+const ReviewRadarChartPage: FC<ReviewRadarChartPageProps> = ({ labId }) => {
 
   // labIdに基づいてレビューをフィルタリングし、平均値を計算する
   const { avgData, labName } = useMemo(() => {
-    const targetReviews = reviews.filter(r => r.labId === labId);
+    const targetRadarReviews = radarReviews.filter(r => r.labId === labId);
 
-    if (targetReviews.length === 0) {
+    if (targetRadarReviews.length === 0) {
       // 対象データがない場合はデフォルト値を返す
       return {
         avgData: { motivation: 0, equipment: 0, longTermGrowth: 0, bottomUp: 0 },
@@ -53,11 +55,11 @@ const ReviewRadarChartPage: FC<ReviewRadarChartPageProps> = ({ labId, reviews })
       };
     }
 
-    const reviewCount = targetReviews.length;
-    const currentLabName = targetReviews[0].labName;
+    const reviewCount = targetRadarReviews.length;
+    const currentLabName = targetRadarReviews[0].labName;
 
     // 各項目の合計値を計算
-    const totals = targetReviews.reduce((acc, review) => {
+    const totals = targetRadarReviews.reduce((acc, review) => {
       acc.motivation += review.motivation;
       acc.equipment += review.equipment;
       acc.longTermGrowth += review.longTermGrowth;
@@ -74,7 +76,7 @@ const ReviewRadarChartPage: FC<ReviewRadarChartPageProps> = ({ labId, reviews })
     };
 
     return { avgData: calculatedAvgData, labName: currentLabName };
-  }, [labId, reviews]);
+  }, [labId, radarReviews]);
 
 
   // レーダーチャート用のデータ形式に変換する
