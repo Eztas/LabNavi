@@ -15,8 +15,7 @@ import {
 
 // 5項目のレビューデータ型
 interface ReviewChart {
-  morale: number;
-  communication: number;
+  motivation: number;
   equipment: number;
   longTermGrowth: number;
   bottomUp: number;
@@ -25,8 +24,7 @@ interface ReviewChart {
 // 表示する単一の研究室レビューデータ
 // 本来は外部からpropsとして渡されるか、APIから取得します
 const initialReviews: ReviewChart = {
-  morale: 4,
-  communication: 5,
+  motivation: 4,
   equipment: 3,
   longTermGrowth: 4,
   bottomUp: 5,
@@ -34,8 +32,7 @@ const initialReviews: ReviewChart = {
 
 // 日本語のラベルを定義
 const reviewLabels: { [K in keyof ReviewChart]: string } = {
-  morale: '研究室の士気',
-  communication: '風通しのよさ',
+  motivation: '学生の士気',
   equipment: '研究設備',
   longTermGrowth: '長期育成',
   bottomUp: 'ボトムアップ',
