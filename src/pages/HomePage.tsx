@@ -50,12 +50,15 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick }) => {
         <table className="w-full text-sm text-left text-gray-600">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-              <th scope="col" className="px-6 py-3">研究室名</th>
-              <th scope="col" className="px-6 py-3">教授レビュー</th>
-              <th scope="col" className="px-6 py-3">研究内容</th>
-              <th scope="col" className="px-6 py-3 hidden md:table-cell">コアタイム</th>
-              <th scope="col" className="px-6 py-3 hidden lg:table-cell">スケジュール</th>
-              <th scope="col" className="px-6 py-3 hidden lg:table-cell">就職先</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap">研究室名</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap">教授レビュー</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap">研究内容</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap hidden md:table-cell">コアタイム</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">スケジュール</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">研究テーマ</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">学会参加</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">受賞数</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">就職先</th>
             </tr>
           </thead>
           <tbody>
@@ -78,6 +81,9 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick }) => {
                 <td className="px-6 py-4">{lab.content}</td>
                 <td className="px-6 py-4 hidden md:table-cell">{lab.coreTime}</td>
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.schedule}</td>
+                <td className="px-6 py-4 hidden lg:table-cell">{lab.decision}</td>
+                <td className="px-6 py-4 hidden lg:table-cell">{lab.conference}</td>
+                <td className="px-6 py-4 hidden lg:table-cell">{lab.rewards}</td>
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.career}</td>
               </tr>
             ))}

@@ -7,7 +7,9 @@ export interface Lab {
   content: string;
   coreTime: string;
   schedule: string;
-  style: string;
+  decision: string;
+  conference: string;
+  rewards: number;
   career: string;
 }
 
