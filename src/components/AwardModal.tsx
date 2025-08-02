@@ -39,9 +39,6 @@ const AwardModal: FC<AwardModalProps> = ({ lab, onClose }) => {
             <p className="text-gray-500 text-center py-8">この研究室の受賞歴情報はありません。</p>
           )}
         </div>
-        <div className="p-4 border-t text-right">
-          <button onClick={onClose} className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">閉じる</button>
-        </div>
       </div>
     </div>
   );
