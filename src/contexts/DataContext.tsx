@@ -11,6 +11,8 @@ interface DataContextType {
   setReviews: Dispatch<SetStateAction<Review[]>>;
   page: Page;         // 色んなページ移動が起こるため、引数で渡し合うのは冗長
   setPage: Dispatch<SetStateAction<Page>>;
+  isLoggedIn: boolean; // ログイン状態も多くのページで必要になるため、バケツリレーになりやすい
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
 }
 
 // 2. Contextオブジェクトを作成 (初期値はnull)
@@ -22,7 +24,7 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [labs, setLabs] = useState<Lab[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [page, setPage] = useState<Page>('home');
-
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   useEffect(() => {
     setLabs(initialLabs);
     setReviews(initialReviews);
@@ -36,6 +38,8 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setReviews,
     page,
     setPage,
+    isLoggedIn,
+    setIsLoggedIn
   }), [page, labs, reviews]);
 
   return (

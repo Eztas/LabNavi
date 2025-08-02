@@ -10,38 +10,41 @@ import ReviewModal from './components/ReviewModal';
 import HomePage from './pages/HomePage';
 import ReviewChartPage from './pages/ReviewChartPage';
 import ReviewFormPage from './pages/ReviewFormPage';
+import LoginPage from './pages/LoginPage';
 
 // コンテキスト
 import { useDataContext } from './contexts/DataContext';
 
 // メインのAppコンポーネント
 export default function App() {
-  const { page } = useDataContext();
+  const { page, isLoggedIn } = useDataContext(); // isLoggedInを追加
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedLab, setSelectedLab] = useState<LabWithReview | null>(null);
 
   useEffect(() => {
-    // データベースの代わりに初期データをセットする
     setLoading(false);
   }, []);
 
   const handleReviewClick = (lab: LabWithReview) => {
-      setSelectedLab(lab);
+    setSelectedLab(lab);
   };
 
   const handleCloseModal = () => {
-      setSelectedLab(null);
+    setSelectedLab(null);
   };
 
   const renderPage = () => {
     if (loading) {
       return <div className="text-center py-10">読み込み中...</div>;
     }
+    if (!isLoggedIn) {
+      return <LoginPage onLoginSuccess={() => { /* handle login success here */ }} />;
+    }
     switch (page) {
       case 'chart':
-        return <ReviewChartPage/>;
+        return <ReviewChartPage />;
       case 'form':
-        return <ReviewFormPage/>;
+        return <ReviewFormPage />;
       case 'home':
       default:
         return <HomePage onReviewClick={handleReviewClick} />;
@@ -50,7 +53,7 @@ export default function App() {
 
   return (
     <div className="bg-gray-50 min-h-screen w-screen font-sans">
-      <Header/>
+      <Header />
       <main className="container mx-auto p-4 md:p-6">
         {renderPage()}
       </main>
