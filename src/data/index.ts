@@ -71,9 +71,47 @@ export const initialReviews: Review[] = [
 
 // ▼ この部分を追記
 export const initialAwards: Award[] = [
+  // --- システム制御論研究室 (3件) ---
   { id: 1, labId: 'system_control', awardName: 'ロボティクス学会 年次大会優秀講演賞', awardedAt: '2024年9月' },
   { id: 2, labId: 'system_control', awardName: '国際自動制御連盟 世界大会ポスター賞', awardedAt: '2023年7月' },
-  { id: 3, labId: 'materials_science', awardName: '応用物理学会 論文賞', awardedAt: '2024年3月' },
-  { id: 4, labId: 'ai_robotics', awardName: 'CVPR Best Paper Award', awardedAt: '2023年6月' },
-  { id: 5, labId: 'ai_robotics', awardName: 'ICML Outstanding Paper Award', awardedAt: '2024年7月' },
+  { id: 3, labId: 'system_control', awardName: '計測自動制御学会 論文賞', awardedAt: '2022年11月' },
+
+  // --- 通信方式研究室 (5件) ---
+  { id: 4, labId: 'communication_theory', awardName: 'IEEE VTC Best Paper Award', awardedAt: '2024年5月' },
+  { id: 5, labId: 'communication_theory', awardName: '電子情報通信学会 業績賞', awardedAt: '2023年10月' },
+  { id: 6, labId: 'communication_theory', awardName: 'Globecom Student Travel Grant', awardedAt: '2023年12月' },
+  { id: 7, labId: 'communication_theory', awardName: '総務省SCOPE採択', awardedAt: '2022年4月' },
+  { id: 8, labId: 'communication_theory', awardName: 'IEEE ICC Poster Award', awardedAt: '2022年5月' },
+
+  // --- 材料科学研究室 (8件) ---
+  { id: 9, labId: 'materials_science', awardName: '応用物理学会 論文賞', awardedAt: '2024年3月' },
+  { id: 10, labId: 'materials_science', awardName: '日本MRS年次大会 奨励賞', awardedAt: '2023年12月' },
+  { id: 11, labId: 'materials_science', awardName: '日本表面真空学会 学術講演会講演奨励賞', awardedAt: '2023年11月' },
+  { id: 12, labId: 'materials_science', awardName: '化学工学会 優秀学生賞', awardedAt: '2024年3月' },
+  { id: 13, labId: 'materials_science', awardName: 'ナノテクノロジー総合シンポジウム ポスター賞', awardedAt: '2023年2月' },
+  { id: 14, labId: 'materials_science', awardName: 'MRS Fall Meeting Best Poster', awardedAt: '2022年11月' },
+  { id: 15, labId: 'materials_science', awardName: '高分子学会 優秀ポスター賞', awardedAt: '2022年9月' },
+  { id: 16, labId: 'materials_science', awardName: '文部科学大臣表彰 若手科学者賞', awardedAt: '2022年4月' },
+
+  // --- AIロボティクス研究室 (12件) ---
+  { id: 17, labId: 'ai_robotics', awardName: 'CVPR Best Paper Award', awardedAt: '2023年6月' },
+  { id: 18, labId: 'ai_robotics', awardName: 'ICML Outstanding Paper Award', awardedAt: '2024年7月' },
+  { id: 19, labId: 'ai_robotics', awardName: 'NeurIPS Spotlight Presentation', awardedAt: '2024年12月' },
+  { id: 20, labId: 'ai_robotics', awardName: 'ICLR Outstanding Paper Award', awardedAt: '2024年5月' },
+  { id: 21, labId: 'ai_robotics', awardName: 'ECCV Best Poster Award', awardedAt: '2024年10月' },
+  { id: 22, labId: 'ai_robotics', awardName: '情報処理学会 山下記念研究賞', awardedAt: '2023年3月' },
+  { id: 23, labId: 'ai_robotics', awardName: 'AAAI Distinguished Paper Award', awardedAt: '2023年2月' },
+  { id: 24, labId: 'ai_robotics', awardName: 'ICCV Best Student Paper Award', awardedAt: '2023年10月' },
+  { id: 25, labId: 'ai_robotics', awardName: '人工知能学会 全国大会優秀賞', awardedAt: '2022年6月' },
+  { id: 26, labId: 'ai_robotics', awardName: 'Google PhD Fellowship', awardedAt: '2022年9月' },
+  { id: 27, labId: 'ai_robotics', awardName: 'Microsoft Research PhD Fellowship', awardedAt: '2023年8月' },
+  { id: 28, labId: 'ai_robotics', awardName: 'ACL Best Demo Paper Award', awardedAt: '2022年5月' },
+
+  // --- ヒューマンインタフェース研究室 (6件) ---
+  { id: 29, labId: 'human_interface', awardName: 'ACM CHI Honorable Mention Award', awardedAt: '2024年5月' },
+  { id: 30, labId: 'human_interface', awardName: 'IEEE VR Best Poster Award', awardedAt: '2024年3月' },
+  { id: 31, labId: 'human_interface', awardName: 'UIST Best Demo Award', awardedAt: '2023年10月' },
+  { id: 32, labId: 'human_interface', awardName: 'ヒューマンインタフェース学会 論文賞', awardedAt: '2023年9月' },
+  { id: 33, labId: 'human_interface', awardName: 'インタラクション 優秀発表賞', awardedAt: '2023年3月' },
+  { id: 34, labId: 'human_interface', awardName: 'SIGGRAPH Emerging Technologies Prize', awardedAt: '2022年8月' },
 ];
