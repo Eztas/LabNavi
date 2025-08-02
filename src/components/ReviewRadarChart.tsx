@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { FC } from 'react';
-import type { RadarReview } from '../types/chart';
-import { initialRadarReviews } from '../data/chart';
+import type { RadarAxis } from '../types/chart';
+import { initialRadarReviews, reviewLabels } from '../data/chart';
 import {
   ResponsiveContainer,
   RadarChart,
@@ -13,21 +13,10 @@ import {
   Legend,
 } from 'recharts';
 
-// レーダーチャートの軸となるデータ項目
-type RaderAxis = Omit<RadarReview, 'labId' | 'labName'>;
-
 // コンポーネントが受け取るpropsの型
 interface ReviewRadarChartProps {
   labId: string;           // 表示対象の研究室ID
 }
-
-// 日本語のラベルを定義
-const reviewLabels: { [K in keyof RaderAxis]: string } = {
-  motivation: '学生の士気',
-  equipment: '研究設備',
-  longTermGrowth: '長期育成',
-  bottomUp: 'ボトムアップ',
-};
 
 const radarReviews = initialRadarReviews;
 
@@ -59,7 +48,7 @@ const ReviewRadarChart: FC<ReviewRadarChartProps> = ({ labId }) => {
     }, { motivation: 0, equipment: 0, longTermGrowth: 0, bottomUp: 0 });
 
     // 平均値を計算
-    const calculatedAvgData: RaderAxis = {
+    const calculatedAvgData: RadarAxis = {
       motivation: totals.motivation / reviewCount,
       equipment: totals.equipment / reviewCount,
       longTermGrowth: totals.longTermGrowth / reviewCount,
@@ -72,7 +61,7 @@ const ReviewRadarChart: FC<ReviewRadarChartProps> = ({ labId }) => {
 
   // レーダーチャート用のデータ形式に変換する
   const chartData = useMemo(() => {
-    return (Object.keys(avgData) as Array<keyof RaderAxis>).map(key => ({
+    return (Object.keys(avgData) as Array<keyof RadarAxis>).map(key => ({
       subject: `${reviewLabels[key]}: ${avgData[key].toFixed(1)}`, // 軸ラベルに平均値を追加 (小数点第一位)
       value: avgData[key], // その項目の評価値
       fullMark: 5, // 評価の最大値
