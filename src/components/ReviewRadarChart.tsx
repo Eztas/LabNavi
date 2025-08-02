@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import type { FC } from 'react';
+import type { RadarReview } from '../types';
 import { initialRadarReviews } from '../data';
 import {
   ResponsiveContainer,
@@ -11,16 +12,6 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-
-// 単一のレビューデータの型
-interface RadarReview {
-  labId: string;
-  labName: string;
-  motivation: number;
-  equipment: number;
-  longTermGrowth: number;
-  bottomUp: number;
-}
 
 // レーダーチャートの軸となるデータ項目
 type RaderAxis = Omit<RadarReview, 'labId' | 'labName'>;
