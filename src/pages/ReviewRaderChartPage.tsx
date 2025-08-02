@@ -44,9 +44,9 @@ const ReviewChartPage: FC = () => {
   const chartData = useMemo(() => {
     // initialReviewsオブジェクトの各キーをループ処理し、
     // rechartsが要求する { subject, value, fullMark } の配列形式に変換します。
-    return Object.keys(initialReviews).map(key => ({
-      subject: reviewLabels[key as keyof ReviewChart], // 軸のラベル (日本語)
-      value: initialReviews[key as keyof ReviewChart], // その項目の評価値
+    return (Object.keys(initialReviews) as Array<keyof ReviewChart>).map(key => ({
+      subject: `${reviewLabels[key]}: ${initialReviews[key]}`, // 軸のラベル (日本語)に数値をコロン区切りで追加
+      value: initialReviews[key], // その項目の評価値
       fullMark: 5, // 評価の最大値 (グラフの最大スケール)
     }));
   }, []); // initialReviewsが固定なので、依存配列は空でOK
