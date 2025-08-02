@@ -1,37 +1,37 @@
-// rechartsのレーダーチャートは、データの個数に合わせて円を自動で分割することで多角形を製作できる
-
 import { useMemo } from 'react';
 import type { FC } from 'react';
 import {
-  ResponsiveContainer, // チャートが親要素のサイズに合わせて自動でリサイズ
-  RadarChart, // data={chartData}の配列の数で自動で多角形raderchartを生成する
+  ResponsiveContainer,
+  RadarChart,
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
   Radar,
   Tooltip,
-  Legend, // Legendを追加
+  Legend,
 } from 'recharts';
 
-// 5項目のレビューデータ型
-interface ReviewRaderChart {
+// 単一のレビューデータの型
+interface RadarReview {
+  labId: string;
+  labName: string;
   motivation: number;
   equipment: number;
   longTermGrowth: number;
   bottomUp: number;
 }
 
-// 表示する単一の研究室レビューデータ
-// 本来は外部からpropsとして渡されるか、APIから取得します
-const initialReviews: ReviewRaderChart = {
-  motivation: 4,
-  equipment: 3,
-  longTermGrowth: 4,
-  bottomUp: 5,
-};
+// レーダーチャートの軸となるデータ項目
+type RaderAxis = Omit<RadarReview, 'labId' | 'labName'>;
+
+// コンポーネントが受け取るpropsの型
+interface ReviewRadarChartPageProps {
+  labId: string;           // 表示対象の研究室ID
+  reviews: RadarReview[];  // すべてのレビューデータ
+}
 
 // 日本語のラベルを定義
-const reviewLabels: { [K in keyof ReviewRaderChart]: string } = {
+const reviewLabels: { [K in keyof RaderAxis]: string } = {
   motivation: '学生の士気',
   equipment: '研究設備',
   longTermGrowth: '長期育成',
@@ -39,60 +39,85 @@ const reviewLabels: { [K in keyof ReviewRaderChart]: string } = {
 };
 
 // レビューグラフページ
-const ReviewRaderChartPage: FC = () => {
+const ReviewRadarChartPage: FC<ReviewRadarChartPageProps> = ({ labId, reviews }) => {
+
+  // labIdに基づいてレビューをフィルタリングし、平均値を計算する
+  const { avgData, labName } = useMemo(() => {
+    const targetReviews = reviews.filter(r => r.labId === labId);
+
+    if (targetReviews.length === 0) {
+      // 対象データがない場合はデフォルト値を返す
+      return {
+        avgData: { motivation: 0, equipment: 0, longTermGrowth: 0, bottomUp: 0 },
+        labName: 'データなし',
+      };
+    }
+
+    const reviewCount = targetReviews.length;
+    const currentLabName = targetReviews[0].labName;
+
+    // 各項目の合計値を計算
+    const totals = targetReviews.reduce((acc, review) => {
+      acc.motivation += review.motivation;
+      acc.equipment += review.equipment;
+      acc.longTermGrowth += review.longTermGrowth;
+      acc.bottomUp += review.bottomUp;
+      return acc;
+    }, { motivation: 0, equipment: 0, longTermGrowth: 0, bottomUp: 0 });
+
+    // 平均値を計算
+    const calculatedAvgData: RaderAxis = {
+      motivation: totals.motivation / reviewCount,
+      equipment: totals.equipment / reviewCount,
+      longTermGrowth: totals.longTermGrowth / reviewCount,
+      bottomUp: totals.bottomUp / reviewCount,
+    };
+
+    return { avgData: calculatedAvgData, labName: currentLabName };
+  }, [labId, reviews]);
+
+
   // レーダーチャート用のデータ形式に変換する
   const chartData = useMemo(() => {
-    // initialReviewsオブジェクトの各キーをループ処理し、
-    // rechartsが要求する { subject, value, fullMark } の配列形式に変換します。
-    return (Object.keys(initialReviews) as Array<keyof ReviewRaderChart>).map(key => ({
-      subject: `${reviewLabels[key]}: ${initialReviews[key]}`, // 軸のラベル (日本語)に数値をコロン区切りで追加
-      value: initialReviews[key], // その項目の評価値
-      fullMark: 5, // 評価の最大値 (グラフの最大スケール)
+    return (Object.keys(avgData) as Array<keyof RaderAxis>).map(key => ({
+      subject: `${reviewLabels[key]}: ${avgData[key].toFixed(1)}`, // 軸ラベルに平均値を追加 (小数点第一位)
+      value: avgData[key], // その項目の評価値
+      fullMark: 5, // 評価の最大値
     }));
-  }, []); // initialReviewsが固定なので、依存配列は空でOK
+  }, [avgData]);
+
 
   return (
     <div className="bg-white p-4 md:p-6 rounded-lg shadow">
-      <h2 className="text-xl font-bold mb-4 text-gray-800">研究室レビュー評価グラフ</h2>
+      <h2 className="text-xl font-bold mb-4 text-gray-800">{`${labName} レビュー評価グラフ`}</h2>
       <div className="w-full h-96 md:h-[500px]">
         <ResponsiveContainer width="100%" height="100%">
-          <RadarChart 
-            cx="50%" // グラフの水平位置
-            cy="50%" // グラフの垂直位置
-            outerRadius="80%" // コンテナに対するグラフの大きさ
+          <RadarChart
+            cx="50%"
+            cy="50%"
+            outerRadius="80%"
             data={chartData}
           >
-            {/* グラフの背景グリッド線 */}
             <PolarGrid />
-
-            {/* グラフの各頂点のラベル (研究室の士気, 風通し...など) */}
             <PolarAngleAxis dataKey="subject" />
-            
-            {/* 中心から放射状に伸びる軸の目盛り (今回は非表示) */}
             <PolarRadiusAxis angle={30} domain={[0, 5]} tick={false} axisLine={false} />
-
-            {/* 描画するデータ */}
-            <Radar 
-              name="研究室A" // 凡例に表示される名前
-              dataKey="value" // chartDataの'value'を値として使用
-              stroke="#1d4ed8" // 線の色
-              fill="#1d4ed8" // 塗りつぶしの色
-              fillOpacity={0.6} // 塗りつぶしの透明度
+            <Radar
+              name={labName}
+              dataKey="value"
+              stroke="#1d4ed8"
+              fill="#1d4ed8"
+              fillOpacity={0.6}
             />
-
-            {/* ホバー時に表示されるツールチップ */}
             <Tooltip />
-
-            {/* 凡例 (「研究室A」といった表示) */}
             <Legend />
           </RadarChart>
         </ResponsiveContainer>
       </div>
       <div className="mt-4 text-sm text-gray-600 text-center">
-        <p>各項目の評価を5段階で示しています。</p>
+        <p>各項目の評価を5段階の平均値で示しています。</p>
       </div>
     </div>
   );
 };
 
-export default ReviewRaderChartPage;
+export default ReviewRadarChartPage;
