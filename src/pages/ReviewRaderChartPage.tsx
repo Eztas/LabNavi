@@ -14,7 +14,7 @@ import {
 } from 'recharts';
 
 // 5項目のレビューデータ型
-interface ReviewChart {
+interface ReviewRaderChart {
   motivation: number;
   equipment: number;
   longTermGrowth: number;
@@ -23,7 +23,7 @@ interface ReviewChart {
 
 // 表示する単一の研究室レビューデータ
 // 本来は外部からpropsとして渡されるか、APIから取得します
-const initialReviews: ReviewChart = {
+const initialReviews: ReviewRaderChart = {
   motivation: 4,
   equipment: 3,
   longTermGrowth: 4,
@@ -31,7 +31,7 @@ const initialReviews: ReviewChart = {
 };
 
 // 日本語のラベルを定義
-const reviewLabels: { [K in keyof ReviewChart]: string } = {
+const reviewLabels: { [K in keyof ReviewRaderChart]: string } = {
   motivation: '学生の士気',
   equipment: '研究設備',
   longTermGrowth: '長期育成',
@@ -39,12 +39,12 @@ const reviewLabels: { [K in keyof ReviewChart]: string } = {
 };
 
 // レビューグラフページ
-const ReviewChartPage: FC = () => {
+const ReviewRaderChartPage: FC = () => {
   // レーダーチャート用のデータ形式に変換する
   const chartData = useMemo(() => {
     // initialReviewsオブジェクトの各キーをループ処理し、
     // rechartsが要求する { subject, value, fullMark } の配列形式に変換します。
-    return (Object.keys(initialReviews) as Array<keyof ReviewChart>).map(key => ({
+    return (Object.keys(initialReviews) as Array<keyof ReviewRaderChart>).map(key => ({
       subject: `${reviewLabels[key]}: ${initialReviews[key]}`, // 軸のラベル (日本語)に数値をコロン区切りで追加
       value: initialReviews[key], // その項目の評価値
       fullMark: 5, // 評価の最大値 (グラフの最大スケール)
@@ -95,4 +95,4 @@ const ReviewChartPage: FC = () => {
   );
 };
 
-export default ReviewChartPage;
+export default ReviewRaderChartPage;
