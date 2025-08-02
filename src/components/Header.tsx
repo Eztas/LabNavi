@@ -9,7 +9,17 @@ const Header: FC = () => {
   return (
   <header className="bg-white shadow-md sticky top-0 z-20">
     <div className="px-6 py-3 flex justify-between items-center">
-      <h1 className="text-xl md:text-2xl font-bold text-gray-800">LabNavi</h1>
+      <div className="flex items-center">
+        <img
+        src="/favicon.png"
+        alt="LabNavi logo"
+        className="h-8 w-8 mr-2" // 画像のサイズと右の余白
+      />
+      
+      <h1 className="text-xl md:text-2xl font-bold text-gray-800">
+      LabNavi
+      </h1>
+    </div>
       <nav className="flex items-center space-x-2">
         <button onClick={() => setPage('home')} className="p-2 rounded-full hover:bg-gray-100 transition-colors" title="ホーム">
           <Home className="h-5 w-5 text-gray-600" />

@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect, useMemo, useContext } from 'react';
 import type { FC, ReactNode, Dispatch, SetStateAction } from 'react';
-import type { Lab, Review, Page } from '../types';
-import { initialLabs, initialReviews } from '../data';
+import type { Lab, Review, Page, Award } from '../types';
+import { initialLabs, initialReviews, initialAwards } from '../data';
+
+
 
 // Contextが提供する値の型を定義
 interface DataContextType {
@@ -13,6 +15,8 @@ interface DataContextType {
   setPage: Dispatch<SetStateAction<Page>>;
   isLoggedIn: boolean; // ログイン状態も多くのページで必要になるため、バケツリレーになりやすい
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  awards: Award[]; // ▼ awardsの型定義を追加
+  setAwards: Dispatch<SetStateAction<Award[]>>; // ▼ setAwardsの型定義を追加
 }
 
 // 2. Contextオブジェクトを作成 (初期値はnull)
@@ -25,9 +29,12 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [page, setPage] = useState<Page>('home');
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [awards, setAwards] = useState<Award[]>([]); // ▼ awards用の状態を追加
+
   useEffect(() => {
     setLabs(initialLabs);
     setReviews(initialReviews);
+    setAwards(initialAwards); // ▼ awardsの初期データをセット
   }, []);
 
   // useMemoを使って、Contextの値が不必要に再生成されるのを防ぐ
@@ -39,8 +46,11 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     page,
     setPage,
     isLoggedIn,
-    setIsLoggedIn
-  }), [page, labs, reviews]);
+    setIsLoggedIn,
+    awards, // ▼ valueにawardsを追加
+    setAwards, // ▼ valueにsetAwardsを追加
+  }), [page, labs, reviews, awards]);
+
 
   return (
     <DataContext.Provider value={value}>

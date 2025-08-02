@@ -9,10 +9,12 @@ import { useDataContext } from '.././contexts/DataContext';
 
 interface HomePageProps {
   onReviewClick: (lab: LabWithReview) => void;
+  onAwardsClick: (lab: LabWithReview) => void;
+  
 }
 
 // ホームページコンポーネント
-const HomePage: FC<HomePageProps> = ({ onReviewClick }) => {
+const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
   const { labs, reviews } = useDataContext();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -83,7 +85,16 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick }) => {
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.schedule}</td>
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.decision}</td>
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.conference}</td>
-                <td className="px-6 py-4 hidden lg:table-cell">{lab.rewards}</td>
+                <td className="px-6 py-4 hidden lg:table-cell">
+                  <button
+                  onClick={() => onAwardsClick(lab)}
+                  className="text-blue-600 hover:underline disabled:text-gray-400 disabled:no-underline"
+                  disabled={lab.rewards === 0}
+                  >
+                    {lab.rewards} 
+                    </button>
+                </td>
+
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.career}</td>
               </tr>
             ))}
