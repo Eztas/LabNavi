@@ -1,35 +1,50 @@
 
 require('dotenv').config();
 
-
+const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('./models/user');
+// MongoDB接続設定
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB接続成功'))
+  .catch(err => console.error('MongoDB接続エラー:', err));
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const users = [];
+//const users = []; この行は削除
 
 const JWT_SECRET =  process.env.JWT_SECRET;
 
 // ユーザー登録API
 app.post('/api/register', async (req, res) => {
-    const { email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    users.push({ email, password: hashedPassword }); // ← 修正
-
-    res.status(201).send('ユーザー登録が完了しました');
+    const { name, email, password } = req.body;
+    try {
+        // 既存ユーザーの重複チェック
+        const existing = await User.findOne({ email });
+        if (existing) {
+            return res.status(400).send('既に登録されています');
+        }
+        // パスワードをハッシュ化
+        const hashedPassword = await bcrypt.hash(password, 10);
+        // ユーザーをDBに保存
+        await User.create({ name, email, password: hashedPassword });
+        res.status(201).send('ユーザー登録が完了しました');
+    } catch (err) {
+        res.status(500).send('サーバーエラー');
+    }
 });
 
 // ログインAPI
 app.post('/api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = users.find(u => u.email === email);
+        // ↓ここを修正
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).send('ユーザーが見つかりません');
         }
@@ -39,8 +54,8 @@ app.post('/api/login', async (req, res) => {
             return res.status(400).send('パスワードが正しくありません');
         }
 
-        const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' }); // ← 修正
-        res.json({ token }); // ← 修正
+        const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
 
     } catch (error) {
         res.status(500).send('サーバーエラー');

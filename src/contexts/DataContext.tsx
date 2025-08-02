@@ -49,7 +49,7 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setIsLoggedIn,
     awards, // ▼ valueにawardsを追加
     setAwards, // ▼ valueにsetAwardsを追加
-  }), [page, labs, reviews, awards]);
+  }), [page, labs, reviews, awards, isLoggedIn,setIsLoggedIn]);
 
 
   return (

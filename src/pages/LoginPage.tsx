@@ -22,6 +22,7 @@ const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
   };
   const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    console.log('Sign Upボタンが押されました');
     try {
       const res = await fetch('/api/register', {
         method: 'POST',

@@ -18,8 +18,9 @@ import { useDataContext } from './contexts/DataContext';
 
 // メインのAppコンポーネント
 export default function App() {
-  const { page, isLoggedIn } = useDataContext(); // isLoggedInを追加
+  const { page, isLoggedIn, setIsLoggedIn } = useDataContext(); // isLoggedInを追加
   const [loading, setLoading] = useState<boolean>(true);
+  
   const [selectedLab, setSelectedLab] = useState<LabWithReview | null>(null);
   const [selectedLabForAwards, setSelectedLabForAwards] = useState<LabWithReview | null>(null);
 
@@ -42,13 +43,16 @@ export default function App() {
   const handleCloseAwardModal = () => {
       setSelectedLabForAwards(null);
   };
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
 
   const renderPage = () => {
     if (loading) {
       return <div className="text-center py-10">読み込み中...</div>;
     }
     if (!isLoggedIn) {
-      return <LoginPage onLoginSuccess={() => { /* handle login success here */ }} />;
+      return <LoginPage onLoginSuccess={handleLoginSuccess} />;
     }
     switch (page) {
       case 'chart':
