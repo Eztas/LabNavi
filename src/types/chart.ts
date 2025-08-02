@@ -6,3 +6,6 @@ export interface RadarReview {
   longTermGrowth: number;
   bottomUp: number;
 }
+
+// レーダーチャートの軸となるデータ項目
+export type RadarAxis = Omit<RadarReview, 'labId' | 'labName'>;

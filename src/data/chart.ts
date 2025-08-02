@@ -1,4 +1,4 @@
-import type { RadarReview } from '.././types/chart'
+import type { RadarReview, RadarAxis } from '.././types/chart'
 
 export const initialRadarReviews: RadarReview[] = [
   {
@@ -58,3 +58,11 @@ export const initialRadarReviews: RadarReview[] = [
     bottomUp: 1,
   },
 ];
+
+// 日本語のラベルを定義
+export const reviewLabels: { [K in keyof RadarAxis]: string } = {
+  motivation: '学生の士気',
+  equipment: '研究設備',
+  longTermGrowth: '長期育成',
+  bottomUp: 'ボトムアップ',
+};
