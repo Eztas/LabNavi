@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { FC } from 'react';
-import type { RadarReview } from '../types';
-import { initialRadarReviews } from '../data';
+import type { RadarReview } from '../types/chart';
+import { initialRadarReviews } from '../data/chart';
 import {
   ResponsiveContainer,
   RadarChart,
