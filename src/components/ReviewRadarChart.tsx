@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { FC } from 'react';
-import { initialRadarReviews } from '.././data';
+import { initialRadarReviews } from '../data';
 import {
   ResponsiveContainer,
   RadarChart,
@@ -26,7 +26,7 @@ interface RadarReview {
 type RaderAxis = Omit<RadarReview, 'labId' | 'labName'>;
 
 // コンポーネントが受け取るpropsの型
-interface ReviewRadarChartPageProps {
+interface ReviewRadarChartProps {
   labId: string;           // 表示対象の研究室ID
 }
 
@@ -41,7 +41,7 @@ const reviewLabels: { [K in keyof RaderAxis]: string } = {
 const radarReviews = initialRadarReviews;
 
 // レビューグラフページ
-const ReviewRadarChartPage: FC<ReviewRadarChartPageProps> = ({ labId }) => {
+const ReviewRadarChart: FC<ReviewRadarChartProps> = ({ labId }) => {
 
   // labIdに基づいてレビューをフィルタリングし、平均値を計算する
   const { avgData, labName } = useMemo(() => {
@@ -122,4 +122,4 @@ const ReviewRadarChartPage: FC<ReviewRadarChartPageProps> = ({ labId }) => {
   );
 };
 
-export default ReviewRadarChartPage;
+export default ReviewRadarChart;
