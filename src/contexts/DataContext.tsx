@@ -1,7 +1,9 @@
 import { createContext, useState, useEffect, useMemo, useContext } from 'react';
 import type { FC, ReactNode, Dispatch, SetStateAction } from 'react';
-import type { Lab, Review, Page } from '../types';
-import { initialLabs, initialReviews } from '../data';
+import type { Lab, Review, Page, Award } from '../types';
+import { initialLabs, initialReviews, initialAwards } from '../data';
+
+
 
 // Contextが提供する値の型を定義
 interface DataContextType {
@@ -11,6 +13,8 @@ interface DataContextType {
   setReviews: Dispatch<SetStateAction<Review[]>>;
   page: Page;         // 色んなページ移動が起こるため、引数で渡し合うのは冗長
   setPage: Dispatch<SetStateAction<Page>>;
+  awards: Award[]; // ▼ awardsの型定義を追加
+  setAwards: Dispatch<SetStateAction<Award[]>>; // ▼ setAwardsの型定義を追加
 }
 
 // 2. Contextオブジェクトを作成 (初期値はnull)
@@ -22,10 +26,12 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [labs, setLabs] = useState<Lab[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [page, setPage] = useState<Page>('home');
+  const [awards, setAwards] = useState<Award[]>([]); // ▼ awards用の状態を追加
 
   useEffect(() => {
     setLabs(initialLabs);
     setReviews(initialReviews);
+    setAwards(initialAwards); // ▼ awardsの初期データをセット
   }, []);
 
   // useMemoを使って、Contextの値が不必要に再生成されるのを防ぐ
@@ -36,7 +42,10 @@ export const DataProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setReviews,
     page,
     setPage,
-  }), [page, labs, reviews]);
+    awards, // ▼ valueにawardsを追加
+    setAwards, // ▼ valueにsetAwardsを追加
+  }), [page, labs, reviews, awards]); // ▼ 依存配列にawardsを追加
+
 
   return (
     <DataContext.Provider value={value}>

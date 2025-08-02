@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 // --- 型定義のためのインポート ---
-import type { LabWithReview } from './types/'
+import type { LabWithReview, } from './types/'
 
 // コンポーネント
 import Header from './components/Header';
 import ReviewModal from './components/ReviewModal';
+import AwardModal from './components/AwardModal'; 
 
 // ページ
 import HomePage from './pages/HomePage';
@@ -19,6 +20,7 @@ export default function App() {
   const { page } = useDataContext();
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedLab, setSelectedLab] = useState<LabWithReview | null>(null);
+  const [selectedLabForAwards, setSelectedLabForAwards] = useState<LabWithReview | null>(null);
 
   useEffect(() => {
     // データベースの代わりに初期データをセットする
@@ -33,6 +35,14 @@ export default function App() {
       setSelectedLab(null);
   };
 
+  const handleAwardsClick = (lab: LabWithReview) => {
+      setSelectedLabForAwards(lab);
+  };
+
+  const handleCloseAwardModal = () => {
+      setSelectedLabForAwards(null);
+  };
+
   const renderPage = () => {
     if (loading) {
       return <div className="text-center py-10">読み込み中...</div>;
@@ -44,7 +54,7 @@ export default function App() {
         return <ReviewFormPage/>;
       case 'home':
       default:
-        return <HomePage onReviewClick={handleReviewClick} />;
+        return <HomePage onReviewClick={handleReviewClick} onAwardsClick={handleAwardsClick} />;
     }
   };
 
@@ -55,6 +65,7 @@ export default function App() {
         {renderPage()}
       </main>
       <ReviewModal lab={selectedLab} onClose={handleCloseModal} />
+      <AwardModal lab={selectedLabForAwards} onClose={handleCloseAwardModal} />
     </div>
   );
 }

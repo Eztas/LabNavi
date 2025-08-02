@@ -1,4 +1,5 @@
 import type { Lab, Review } from '.././types/'
+import type { Award } from '../types';
 
 // --- 初期データ ---
 export const initialLabs: Lab[] = [
@@ -66,4 +67,13 @@ export const initialReviews: Review[] = [
     { id: 4, labId: 'materials_science', labName: '材料科学研究室', strict: 9, supportive: 9, comment: 'コアタイムが長く大変だが、その分成長できる環境。' },
     { id: 5, labId: 'ai_robotics', labName: 'AIロボティクス研究室', strict: 5, supportive: 2, comment: '完全な放置。自分でテーマを見つけられる人向け。' },
     { id: 6, labId: 'human_interface', labName: 'ヒューマンインタフェース研究室', strict: 4, supportive: 6, comment: '和気あいあいとした雰囲気で楽しい。' },
+];
+
+// ▼ この部分を追記
+export const initialAwards: Award[] = [
+  { id: 1, labId: 'system_control', awardName: 'ロボティクス学会 年次大会優秀講演賞', awardedAt: '2024年9月' },
+  { id: 2, labId: 'system_control', awardName: '国際自動制御連盟 世界大会ポスター賞', awardedAt: '2023年7月' },
+  { id: 3, labId: 'materials_science', awardName: '応用物理学会 論文賞', awardedAt: '2024年3月' },
+  { id: 4, labId: 'ai_robotics', awardName: 'CVPR Best Paper Award', awardedAt: '2023年6月' },
+  { id: 5, labId: 'ai_robotics', awardName: 'ICML Outstanding Paper Award', awardedAt: '2024年7月' },
 ];

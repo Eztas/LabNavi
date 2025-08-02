@@ -30,3 +30,11 @@ export interface LabWithReview extends Lab {
 
 // pageの型定義, これを状態として管理することで、状態がセットされるたびに際レンダリングが自動で開始
 export type Page = 'home' | 'chart' | 'form';
+
+// ▼ この部分を追記
+export interface Award {
+  id: number;
+  labId: string;
+  awardName: string;
+  awardedAt: string;
+}
