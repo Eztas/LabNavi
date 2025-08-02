@@ -19,7 +19,7 @@ const ReviewModal: FC<ReviewModalProps> = ({ lab, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
-            <div className="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-[90vh] flex flex-col">
+            <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
                 <div className="p-4 border-b flex justify-between items-center">
                     <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-200">
                         <X className="h-6 w-6 text-gray-600" />
