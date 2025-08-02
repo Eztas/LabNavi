@@ -8,7 +8,7 @@ const Header: FC = () => {
   const { setPage } = useDataContext(); // Contextから直接setPageを取得
   return (
   <header className="bg-white shadow-md sticky top-0 z-20">
-    <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <div className="px-6 py-3 flex justify-between items-center">
       <h1 className="text-xl md:text-2xl font-bold text-gray-800">LabNavi</h1>
       <nav className="flex items-center space-x-2">
         <button onClick={() => setPage('home')} className="p-2 rounded-full hover:bg-gray-100 transition-colors" title="ホーム">
