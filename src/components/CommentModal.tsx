@@ -1,8 +1,6 @@
-import { useState } from 'react'; // useStateをインポート
 import type { FC } from 'react';
 import type { LabWithReview } from '../types/';
 import { X, ThumbsUp } from 'lucide-react';
-import { initialComments } from '../data/comment';
 
 import { useModalContext } from '.././contexts/ModalContext';
 
