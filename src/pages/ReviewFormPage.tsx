@@ -174,6 +174,7 @@ const ReviewFormPage: FC = () => {
           width: 20px;
           height: 20px;
           border-radius: 50%;
+          background-color: #9ca3af; /* ★デフォルトの背景色を追加 */
           cursor: pointer;
           transition: background-color 0.2s;
         }
@@ -181,6 +182,7 @@ const ReviewFormPage: FC = () => {
           width: 20px;
           height: 20px;
           border-radius: 50%;
+          background-color: #9ca3af; /* ★デフォルトの背景色を追加 */
           cursor: pointer;
           border: none;
           transition: background-color 0.2s;
