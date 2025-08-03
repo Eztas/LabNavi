@@ -16,7 +16,7 @@
 
 - [TowaYokoyama](https://github.com/TowaYokoyama)
 
-- 匿名
+- [kinottttttt](https://github.com/kinottttttt)
 
 ## Skills
 
