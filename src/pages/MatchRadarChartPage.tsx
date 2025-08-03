@@ -125,7 +125,7 @@ const MatchRadarChartPage = () => {
         <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg w-full max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center text-gray-800">分析結果</h2>
           <p className="text-lg md:text-xl text-center text-indigo-600 font-semibold mb-6">
-            あなたに最もマッチする研究室は <span className="font-bold text-2xl">{`「${matchResult.labName}」`}</span> です！
+            あなたに最もマッチする研究室は <p className="font-bold text-2xl">{`「${matchResult.labName}」`}</p> です！
           </p>
           <div className="w-full h-96 md:h-[500px]">
             <ResponsiveContainer width="100%" height="100%">
