@@ -1,0 +1,74 @@
+import type { Comment } from '../types/comment';
+
+export const initialComments: Comment[] = [
+  {
+    labId: 'system_control',
+    labName: 'システム制御論研究室',
+    statement: '研究室の設備が充実していて、実験には困らない。',
+    createdAts: '2025-07-28T10:30:00Z',
+    likes: 15,
+  },
+  {
+    labId: 'system_control',
+    labName: 'システム制御論研究室',
+    statement: '先輩たちが親切で、研究に行き詰まっても相談しやすい雰囲気がある。',
+    createdAts: '2025-07-25T15:45:10Z',
+    likes: 23,
+  },
+  {
+    labId: 'communication_theory',
+    labName: '通信方式研究室',
+    statement: '自分のペースで研究を進められるので、兼部やアルバイトとの両立がしやすい。',
+    createdAts: '2025-06-12T09:00:00Z',
+    likes: 8,
+  },
+  {
+    labId: 'materials_science',
+    labName: '材料科学研究室',
+    statement: '教授の指導が熱心で、論文の書き方から丁寧に教えてもらえる。',
+    createdAts: '2025-08-01T11:20:30Z',
+    likes: 31,
+  },
+  {
+    labId: 'materials_science',
+    labName: '材料科学研究室',
+    statement: 'コアタイムは長いが、その分、研究室のメンバーとの仲が深まる。',
+    createdAts: '2025-05-20T18:10:05Z',
+    likes: 18,
+  },
+  {
+    labId: 'ai_robotics',
+    labName: 'AIロボティクス研究室',
+    statement: 'トップカンファレンスでの発表を目指せるので、研究者志望の学生には最高の環境。',
+    createdAts: '2025-07-30T20:05:50Z',
+    likes: 45,
+  },
+  {
+    labId: 'ai_robotics',
+    labName: 'AIロボティクス研究室',
+    statement: '自由な発想で研究テーマを決められるのが魅力。',
+    createdAts: '2025-04-15T14:22:00Z',
+    likes: 29,
+  },
+  {
+    labId: 'human_interface',
+    labName: 'ヒューマンインタフェース研究室',
+    statement: 'VRやARの最新機材に触れられるのが楽しい。',
+    createdAts: '2025-08-02T09:55:15Z',
+    likes: 35,
+  },
+  {
+    labId: 'human_interface',
+    labName: 'ヒューマンインタフェース研究室',
+    statement: '学会発表だけでなく、展示会への出展など、アウトプットの機会が多い。',
+    createdAts: '2024-11-30T12:00:00Z',
+    likes: 21,
+  },
+  {
+    labId: 'communication_theory',
+    labName: '通信方式研究室',
+    statement: '留学生が多く、国際的な交流ができる。',
+    createdAts: '2025-02-10T17:40:40Z',
+    likes: 12,
+  },
+];
