@@ -155,7 +155,7 @@ const MatchRadarChartPage = () => {
           <div className="mt-8 text-center">
             <button
               onClick={handleReset}
-              className="w-full max-w-xs bg-gray-600 text-white font-bold py-3 px-4 rounded-md hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="w-full max-w-xs bg-gray-600 text-green font-bold py-3 px-4 rounded-md hover:bg-gray-700 transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               もう一度分析する
             </button>
@@ -207,7 +207,7 @@ const MatchRadarChartPage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-md hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed transition-all duration-300 ease-in-out transform hover:scale-105"
+              className="w-full bg-indigo-600 text-green font-bold py-3 px-4 rounded-md hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               {isSubmitting ? '分析中...' : 'グラフを生成する'}
             </button>
