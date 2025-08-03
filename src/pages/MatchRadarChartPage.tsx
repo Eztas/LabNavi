@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import type { RadarReview, RadarAxis } from '../types/chart';
 import { initialRadarReviews, reviewLabels, reviewLabelDetails } from '../data/chart';
-import { useDataContext } from '../contexts/DataContext';
 import {
   ResponsiveContainer,
   RadarChart,
@@ -14,8 +13,6 @@ import {
 } from 'recharts';
 
 const MatchRadarChartPage = () => {
-  const { setPage } = useDataContext();
-
   // reviewLabelsのキーから動的に初期Stateを生成
   const initialValues = Object.keys(reviewLabels).reduce((acc, key) => {
     acc[key as keyof RadarAxis] = 3;
@@ -120,7 +117,6 @@ const MatchRadarChartPage = () => {
       fullMark: 5,
     }));
   }, [matchResult]);
-
 
   // 結果表示画面
   if (matchResult) {
