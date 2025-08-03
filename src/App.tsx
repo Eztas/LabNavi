@@ -18,7 +18,7 @@ import { useDataContext } from './contexts/DataContext';
 
 // メインのAppコンポーネント
 export default function App() {
-  const { page, isLoggedIn, setIsLoggedIn } = useDataContext(); // isLoggedInを追加
+  const { page,setPage, isLoggedIn, setIsLoggedIn } = useDataContext(); // isLoggedInを追加
   const [loading, setLoading] = useState<boolean>(true);
   
   const [selectedLab, setSelectedLab] = useState<LabWithReview | null>(null);
@@ -44,8 +44,21 @@ export default function App() {
       setSelectedLabForAwards(null);
   };
   const handleLoginSuccess = () => {
+    console.log('ここまできたよ', isLoggedIn);
+    console.log(page);
     setIsLoggedIn(true);
+    console.log(isLoggedIn);
   };
+
+  useEffect(() => {
+  // この中では、isLoggedInは更新後の正しい値になっています
+  console.log('isLoggedInの値が更新されました:', isLoggedIn);
+  
+  // もしログイン後にホームページへ遷移させたいなら、ここが最適な場所です
+  if (isLoggedIn) {
+    setPage('home');
+  }
+}, [isLoggedIn]); // 依存配列にisLoggedInを指定
 
   const renderPage = () => {
     if (loading) {
@@ -75,4 +88,32 @@ export default function App() {
       <AwardModal lab={selectedLabForAwards} onClose={handleCloseAwardModal} />
     </div>
   );
+//   useEffect(() => {
+//   console.log(`[App.tsx の useEffect] isLoggedIn の現在値:`, isLoggedIn);
+// }, [isLoggedIn]);
+
+// return (
+//   <div className="bg-gray-50 min-h-screen w-screen font-sans">
+//     <Header />
+//     <main className="container mx-auto p-4 md:p-6">
+//       {/* ↓↓↓ ここの表示内容を一時的に変更する ↓↓↓ */}
+//       <div className="p-4 border rounded bg-yellow-100 mb-4">
+//         <h1 className="text-xl font-bold">デバッグ情報</h1>
+//         <p>現在のログイン状態: <strong>{isLoggedIn ? 'ログイン済み' : 'ログアウト'}</strong></p>
+//         <p>現在のページ状態: <strong>{page}</strong></p>
+//       </div>
+      
+//       {isLoggedIn ? (
+//         // ログイン済みの場合に表示する内容
+//         <HomePage onReviewClick={handleReviewClick} onAwardsClick={handleAwardsClick} />
+//       ) : (
+//         // ログアウト状態の場合に表示する内容
+//         <LoginPage onLoginSuccess={handleLoginSuccess} />
+//       )}
+//       {/* ↑↑↑ ここまで変更 ↑↑↑ */}
+//     </main>
+//     <ReviewModal lab={selectedLab} onClose={handleCloseModal} />
+//     <AwardModal lab={selectedLabForAwards} onClose={handleCloseAwardModal} />
+//   </div>
+// );
 }

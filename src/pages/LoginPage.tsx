@@ -6,8 +6,9 @@ interface LoginPageProps {
 }
 
 const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
+
   const [isSignUp, setIsSignUp] = useState(false);
-　const [signUpName, setSignUpName] = useState('');
+  const [signUpName, setSignUpName] = useState('');
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
 
@@ -15,33 +16,57 @@ const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
     setIsSignUp(!isSignUp);
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = (e: any) => {
+    e.preventDefault();
     // This is a dummy handler.
     // In a real app, you would perform authentication here.
     onLoginSuccess();
   };
-  const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const handleSignUp = (e: any) => {
+    // API call is disabled. Directly proceed to the next screen.
     e.preventDefault();
+    // console.log('はりぼてモード: サインアップ成功として画面遷移します');
+    
+
+    
     console.log('Sign Upボタンが押されました');
-    try {
-      const res = await fetch('/api/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: signUpName,
-          email: signUpEmail,
-          password: signUpPassword,
-        }),
-      });
+
+    fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: signUpName,
+        email: signUpEmail,
+        password: signUpPassword,
+      }),
+    })
+    .then(res => {
       if (res.ok) {
+        console.log('API request successful, calling onLoginSuccess');
         onLoginSuccess();
+        return res.json(); // To pass data to the next .then()
       } else {
-        
-        alert('サインアップに失敗しました');
+        // Handle server-side errors (like 400, 500)
+        res.text().then(text => {
+          console.error('Server returned an error:', res.status, text);
+          alert(`サインアップに失敗しました: ${text}`);
+        });
+        // We throw an error to be caught by the .catch() block
+        throw new Error('Server error');
       }
-    } catch (err) {
-      alert('通信エラーが発生しました');
-    }
+    })
+    .then(data => {
+      console.log('Successfully signed up with data:', data);
+    })
+    .catch(err => {
+      // Handle network errors or errors thrown from the .then() block
+      console.error('An error occurred during fetch:', err);
+      if (err.message !== 'Server error') { // Avoid double alerting
+        alert('通信エラーが発生しました');
+      }
+    });
+    
   };
 
   return (
@@ -50,7 +75,7 @@ const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
 
         {/* Sign In Form */}
         <div className={`absolute top-0 left-0 h-full w-1/2 transition-all duration-700 ease-in-out ${isSignUp ? 'transform translate-x-full opacity-0' : 'transform translate-x-0 opacity-100'}`}>
-          <form className="flex flex-col items-center justify-center h-full px-12 bg-white">
+          <div className="flex flex-col items-center justify-center h-full px-12 bg-white">
             <h1 className="text-3xl font-bold">Sign in</h1>
             <div className="flex my-4">
               <button type="button" className="flex items-center justify-center w-12 h-12 mx-2 border border-gray-300 rounded-full ">
@@ -65,12 +90,12 @@ const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
             <input className="w-full p-3 my-2 bg-gray-100 border-none" type="password" placeholder="Password" />
             <a href="#" className="my-3 text-sm">Forgot your password?</a>
             <button type="button" onClick={handleSignIn} className="px-12 py-3 text-white uppercase bg-blue-600 rounded-full">Sign In</button>
-          </form>
+          </div>
         </div>
 
         {/* Sign Up Form */}
         <div className={`absolute top-0 left-0 h-full w-1/2 transition-all duration-700 ease-in-out ${isSignUp ? 'transform translate-x-full opacity-100 z-10' : 'transform translate-x-0 opacity-0'}`}>
-           <form className="flex flex-col items-center justify-center h-full px-12 bg-white">
+           <div className="flex flex-col items-center justify-center h-full px-12 bg-white">
             <h1 className="text-3xl font-bold">Create Account</h1>
              <div className="flex my-4">
                <button type="button" className="flex items-center justify-center w-12 h-12 mx-2 border border-gray-300 rounded-full"><FaGithub /></button>
@@ -99,13 +124,13 @@ const LoginPage = ({ onLoginSuccess }: LoginPageProps) => {
               onChange={e => setSignUpPassword(e.target.value)}
             />
             <button
-              onClick={handleSignUp}
               type="button"
+              onClick={handleSignUp}
               className="px-12 py-3 mt-4 text-white uppercase bg-blue-600 rounded-full"
             >
               Sign Up
             </button>
-          </form>
+          </div>
         </div>
         
         {/* Overlay */}

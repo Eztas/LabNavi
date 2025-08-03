@@ -1,16 +1,13 @@
 
 require('dotenv').config();
 
-const mongoose = require('mongoose');
+
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./models/user');
-// MongoDB接続設定
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB接続成功'))
-  .catch(err => console.error('MongoDB接続エラー:', err));
+
 
 const app = express();
 app.use(cors());
@@ -32,8 +29,10 @@ app.post('/api/register', async (req, res) => {
         // パスワードをハッシュ化
         const hashedPassword = await bcrypt.hash(password, 10);
         // ユーザーをDBに保存
-        await User.create({ name, email, password: hashedPassword });
-        res.status(201).send('ユーザー登録が完了しました');
+        const user = await User.create({ name, email, password: hashedPassword });
+        // ユーザー登録成功時にJWTトークンを生成
+        const token = jwt.sign({ email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ token });
     } catch (err) {
         res.status(500).send('サーバーエラー');
     }

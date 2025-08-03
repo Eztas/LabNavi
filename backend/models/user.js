@@ -1,9 +1,29 @@
-const mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
+const dbPath = path.join(__dirname, '..', 'db.json');
 
-module.exports = mongoose.model('User', userSchema);
+const readUsers = () => {
+    const data = fs.readFileSync(dbPath, 'utf8');
+    return JSON.parse(data).users;
+};
+
+const writeUsers = (users) => {
+    fs.writeFileSync(dbPath, JSON.stringify({ users }, null, 2));
+};
+
+const User = {
+    findOne: async ({ email }) => {
+        const users = readUsers();
+        return users.find(user => user.email === email);
+    },
+    create: async (userData) => {
+        const users = readUsers();
+        const newUser = { ...userData, id: Date.now().toString() };
+        users.push(newUser);
+        writeUsers(users);
+        return newUser;
+    }
+};
+
+module.exports = User;
