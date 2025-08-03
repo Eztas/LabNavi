@@ -10,6 +10,7 @@ import AwardModal from './components/AwardModal';
 // ページ
 import HomePage from './pages/HomePage';
 import ReviewChartPage from './pages/ReviewChartPage';
+import MatchRadarChartPage from './pages/MatchRadarChartPage';
 import ReviewFormPage from './pages/ReviewFormPage';
 
 // コンテキスト
@@ -49,7 +50,7 @@ export default function App() {
     }
     switch (page) {
       case 'chart':
-        return <ReviewChartPage/>;
+        return <MatchRadarChartPage/>;
       case 'form':
         return <ReviewFormPage/>;
       case 'home':
