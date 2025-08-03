@@ -1,7 +1,8 @@
+import { useState } from 'react'; // useStateをインポート
 import type { FC } from 'react';
-import type { LabWithReview } from '../types/'; // Comment型をインポート
-import { X, ThumbsUp } from 'lucide-react'; // ThumbsUpアイコンをインポート
-import { initialComments } from '../data/comment'; // コメントデータをインポート
+import type { LabWithReview } from '../types/';
+import { X, ThumbsUp } from 'lucide-react';
+import { initialComments } from '../data/comment';
 
 export interface CommentModalProps {
   lab: LabWithReview | null;
@@ -9,10 +10,24 @@ export interface CommentModalProps {
 }
 
 const CommentModal: FC<CommentModalProps> = ({ lab, onClose }) => {
+  // initialCommentsを初期値としてコンポーネントのstateでコメントを管理
+  const [comments, setComments] = useState(initialComments);
+
   if (!lab) return null;
 
-  // 表示対象の研究室のコメントのみをフィルタリング
-  const labComments = initialComments.filter(c => c.labId === lab.id);
+  // いいねボタンが押されたときの処理
+  const handleLike = (commentId: number) => {
+    setComments(currentComments =>
+      currentComments.map(comment =>
+        comment.id === commentId
+          ? { ...comment, likes: comment.likes + 1 }
+          : comment
+      )
+    );
+  };
+
+  // 表示対象の研究室のコメントのみをstateからフィルタリング
+  const labComments = comments.filter(c => c.labId === lab.id);
 
   // 日付文字列を日本のロケールに合わせた形式（例: 2025/08/03）に変換するヘルパー関数
   const formatDate = (dateString: string) => {
@@ -39,10 +54,14 @@ const CommentModal: FC<CommentModalProps> = ({ lab, onClose }) => {
                   <p className="text-gray-800 break-words">{comment.statement}</p>
                   <div className="text-sm text-gray-500 mt-3 flex justify-between items-center">
                     <span>{formatDate(comment.createdAts)}</span>
-                    <span className="flex items-center font-medium text-gray-600">
+                    {/* いいね部分をボタンに変更し、onClickイベントを追加 */}
+                    <button
+                      onClick={() => handleLike(comment.id)}
+                      className="flex items-center font-medium text-gray-600 rounded-md p-1 hover:bg-blue-100 transition-colors"
+                    >
                       <ThumbsUp className="h-4 w-4 mr-1.5 text-blue-500" />
                       {comment.likes}
-                    </span>
+                    </button>
                   </div>
                 </li>
               ))}
