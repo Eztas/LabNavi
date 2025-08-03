@@ -22,13 +22,13 @@ const Header: FC = () => {
     </div>
       <nav className="flex items-center space-x-2">
         <button onClick={() => setPage('home')} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" title="ホーム">
-          <Home className="h-5 w-5 text-gray-800" />
+          <Home className="h-5 w-5 text-blue-600" />
         </button>
         <button onClick={() => setPage('chart')} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" title="レビューグラフ">
-          <BarChart2 className="h-5 w-5 text-gray-800" />
+          <BarChart2 className="h-5 w-5 text-blue-600" />
         </button>
         <button onClick={() => setPage('form')} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" title="レビュー投稿">
-          <Plus className="h-5 w-5 text-gray-800" />
+          <Plus className="h-5 w-5 text-blue-600" />
         </button>
       </nav>
     </div>
