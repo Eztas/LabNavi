@@ -3,18 +3,19 @@ import { useState, useMemo } from 'react';
 import type { FC } from 'react';
 import type { LabWithReview } from '.././types/'
 
-import { Search, DiamondPlus } from 'lucide-react';
+import { Search, DiamondPlus, MessageSquare } from 'lucide-react';
 
 import { useDataContext } from '.././contexts/DataContext';
 
+// ★ propsのインターフェースを更新
 interface HomePageProps {
-  onReviewClick: (lab: LabWithReview) => void;
-  onAwardsClick: (lab: LabWithReview) => void;
-  
+  onOpenReview: (lab: LabWithReview) => void;
+  onOpenAward: (lab: LabWithReview) => void;
+  onOpenComment: (lab: LabWithReview) => void;
 }
 
-// ホームページコンポーネント
-const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
+// ★ props名を更新
+const HomePage: FC<HomePageProps> = ({ onOpenReview, onOpenAward, onOpenComment }) => {
   const { labs, reviews } = useDataContext();
   const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -53,6 +54,7 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">研究室名</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap">教授名</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">評価チャート</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">研究内容</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap hidden md:table-cell">コアタイム</th>
@@ -61,14 +63,17 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
               <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">学会参加</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">受賞数</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">就職先</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">口コミ</th>
             </tr>
           </thead>
           <tbody>
             {filteredLabs.map(lab => (
               <tr key={lab.id} className="bg-white border-b hover:bg-gray-50">
                 <td className="px-6 py-4 font-medium text-gray-900">{lab.name}</td>
+                <td className="px-6 py-4 font-medium text-gray-900">{lab.professor}</td>
                 <td className="px-6 py-4">
-                  <button onClick={() => onReviewClick(lab)} className="w-full text-left">
+                  {/* ★ 評価チャート（レビュー）用の関数を割り当て */}
+                  <button onClick={() => onOpenReview(lab)} className="w-full text-left">
                     <DiamondPlus size={36} />
                   </button>
                 </td>
@@ -78,8 +83,9 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.decision}</td>
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.conference}</td>
                 <td className="px-6 py-4 hidden lg:table-cell">
+                   {/* ★ 受賞歴用の関数を割り当て */}
                   <button
-                  onClick={() => onAwardsClick(lab)}
+                  onClick={() => onOpenAward(lab)}
                   className="text-blue-600 hover:underline disabled:text-gray-400 disabled:no-underline"
                   disabled={lab.rewards === 0}
                   >
@@ -88,6 +94,12 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
                 </td>
 
                 <td className="px-6 py-4 hidden lg:table-cell">{lab.career}</td>
+                <td className="px-6 py-4 hidden lg:table-cell">
+                  {/* ★ 口コミ（コメント）用の関数を割り当て */}
+                  <button onClick={() => onOpenComment(lab)} className="w-full text-left">
+                    <MessageSquare size={36} />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
