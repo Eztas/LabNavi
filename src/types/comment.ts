@@ -1,4 +1,5 @@
 export interface Comment {
+  id: number; // 追加: コメントのID（オプション）
   labId: string;
   labName: string;
   statement: string;
