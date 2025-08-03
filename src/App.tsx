@@ -1,7 +1,7 @@
 // src/App.tsx
 import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged, type User } from 'firebase/auth';
-import { auth } from './firebase'; // 新規作成したファイルをインポート
+import { auth } from '../firebase'; // 新規作成したファイルをインポート
 
 // --- 既存のインポート（変更なし） ---
 import type { LabWithReview } from './types/';
