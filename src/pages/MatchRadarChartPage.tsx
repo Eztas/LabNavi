@@ -78,7 +78,7 @@ const MatchRadarChartPage = () => {
     labAverages.forEach(lab => {
       let currentDiff = 0;
       (Object.keys(reviewValues) as Array<keyof RadarAxis>).forEach(key => {
-        currentDiff += Math.abs(reviewValues[key] - lab.avgData[key]);
+        currentDiff += Math.pow(reviewValues[key] - lab.avgData[key], 2);
       });
 
       if (currentDiff < minDiff) {
