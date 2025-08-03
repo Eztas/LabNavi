@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import type { RadarReview, RadarAxis } from '../types/chart';
-import { initialRadarReviews, reviewLabels, reviewLabelDetails } from '../data/chart';
+import { reviewLabels, reviewLabelDetails } from '../data/chart';
 import {
   ResponsiveContainer,
   RadarChart,
@@ -12,7 +12,10 @@ import {
   Legend,
 } from 'recharts';
 
+import { useModalContext } from '.././contexts/ModalContext';
+
 const MatchRadarChartPage = () => {
+  const { radarReviews } = useModalContext();
   // reviewLabelsのキーから動的に初期Stateを生成
   const initialValues = Object.keys(reviewLabels).reduce((acc, key) => {
     acc[key as keyof RadarAxis] = 3;
@@ -33,7 +36,7 @@ const MatchRadarChartPage = () => {
   // 各研究室の平均値を計算する（初回レンダリング時のみ計算）
   const labAverages = useMemo(() => {
     const labs: { [labId: string]: { name: string; reviews: RadarReview[] } } = {};
-    initialRadarReviews.forEach(r => {
+    radarReviews.forEach(r => {
       if (!labs[r.labId]) {
         labs[r.labId] = { name: r.labName, reviews: [] };
       }
