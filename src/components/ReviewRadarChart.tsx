@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { FC } from 'react';
 import type { RadarAxis } from '../types/chart';
-import { initialRadarReviews, reviewLabels } from '../data/chart';
+import { reviewLabels } from '../data/chart';
 import {
   ResponsiveContainer,
   RadarChart,
@@ -13,16 +13,16 @@ import {
   Legend,
 } from 'recharts';
 
+import { useModalContext } from '.././contexts/ModalContext';
+
 // コンポーネントが受け取るpropsの型
 interface ReviewRadarChartProps {
   labId: string;           // 表示対象の研究室ID
 }
 
-const radarReviews = initialRadarReviews;
-
 // レビューグラフページ
 const ReviewRadarChart: FC<ReviewRadarChartProps> = ({ labId }) => {
-
+  const { radarReviews } = useModalContext();
   // labIdに基づいてレビューをフィルタリングし、平均値を計算する
   const { avgData, labName } = useMemo(() => {
     const targetRadarReviews = radarReviews.filter(r => r.labId === labId);
