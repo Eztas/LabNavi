@@ -4,6 +4,8 @@ import type { LabWithReview } from '../types/';
 import { X, ThumbsUp } from 'lucide-react';
 import { initialComments } from '../data/comment';
 
+import { useModalContext } from '.././contexts/ModalContext';
+
 export interface CommentModalProps {
   lab: LabWithReview | null;
   onClose: () => void;
@@ -11,7 +13,7 @@ export interface CommentModalProps {
 
 const CommentModal: FC<CommentModalProps> = ({ lab, onClose }) => {
   // initialCommentsを初期値としてコンポーネントのstateでコメントを管理
-  const [comments, setComments] = useState(initialComments);
+  const { comments, setComments } = useModalContext();
 
   if (!lab) return null;
 
