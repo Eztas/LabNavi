@@ -209,7 +209,7 @@ const MatchRadarChartPage = () => {
               disabled={isSubmitting}
               className="w-full bg-indigo-600 text-green font-bold py-3 px-4 rounded-md hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed transition-all duration-300 ease-in-out transform hover:scale-105"
             >
-              {isSubmitting ? '分析中...' : 'グラフを生成する'}
+              {isSubmitting ? '分析中...' : 'レーダーチャートを生成する'}
             </button>
           </div>
         </form>
