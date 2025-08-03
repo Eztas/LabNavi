@@ -2,59 +2,65 @@ import type { Lab, Review } from '.././types/'
 import type { Award } from '../types';
 
 // --- 初期データ ---
+// --- 初期データ ---
 export const initialLabs: Lab[] = [
   {
     id: 'system_control',
     name: 'システム制御論研究室',
+    professor: '田中 聡', // 教授名を追加
     content: 'ドローンやロボットの自律制御',
     coreTime: '10:00-17:00',
     schedule: '週1ミーティング',
-    decision: '共同決定', // 学生と教授が相談してテーマを決める
-    conference: '国内学会（任意参加）', // 学会発表は自由参加
-    rewards: 3, // 過去の受賞数
+    decision: '共同決定',
+    conference: '国内学会（任意参加）',
+    rewards: 3,
     career: '自動車, 電機メーカー'
   },
   {
     id: 'communication_theory',
     name: '通信方式研究室',
+    professor: '鈴木 雄大', // 教授名を追加
     content: '5G/6Gの無線通信技術',
     coreTime: 'なし',
     schedule: '隔週ミーティング',
-    decision: '共同決定', // チームでの議論を重視
-    conference: '国際学会（推奨）', // 国際学会での発表を推奨
+    decision: '共同決定',
+    conference: '国際学会（推奨）',
     rewards: 0,
     career: '通信キャリア, IT企業'
   },
   {
     id: 'materials_science',
     name: '材料科学研究室',
+    professor: '佐藤 美咲', // 教授名を追加
     content: '新規半導体材料の開発',
     coreTime: '9:00-18:00',
     schedule: '毎日朝会',
-    decision: '教授主体', // 教授が大きな研究テーマを決定
-    conference: '国内・国際学会（年1回以上）', // 定期的な学会発表
+    decision: '教授主体',
+    conference: '国内・国際学会（年1回以上）',
     rewards: 8,
     career: '素材メーカー, 研究所'
   },
   {
     id: 'ai_robotics',
     name: 'AIロボティクス研究室',
+    professor: '高橋 健吾', // 教授名を追加
     content: '深層学習を用いた画像認識',
     coreTime: 'フレックス',
     schedule: '自由',
-    decision: '学生主体', // 学生が自由にテーマを設定
-    conference: '国際トップカンファレンス（必須）', // 成果をトップカンファレンスで発表
+    decision: '学生主体',
+    conference: '国際トップカンファレンス（必須）',
     rewards: 12,
     career: 'GAFA, スタートアップ'
   },
   {
     id: 'human_interface',
     name: 'ヒューマンインタフェース研究室',
+    professor: '渡辺 あかり', // 教授名を追加
     content: 'VR/AR技術の応用',
     coreTime: '11:00-19:00',
     schedule: '週2回ディスカッション',
-    decision: '共同決定', // ディスカッションを通じてテーマを具体化
-    conference: '国内外の学会・展示会', // 学会だけでなく技術展示会への出展も
+    decision: '共同決定',
+    conference: '国内外の学会・展示会',
     rewards: 6,
     career: 'ゲーム会社, Webサービス'
   },

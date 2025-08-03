@@ -4,6 +4,7 @@
 export interface Lab {
   id: string;
   name: string;
+  professor: string;
   content: string;
   coreTime: string;
   schedule: string;
