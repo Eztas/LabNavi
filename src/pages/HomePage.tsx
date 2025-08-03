@@ -53,6 +53,7 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">研究室名</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap">教授名</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">評価チャート</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">研究内容</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap hidden md:table-cell">コアタイム</th>
@@ -67,6 +68,7 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
             {filteredLabs.map(lab => (
               <tr key={lab.id} className="bg-white border-b hover:bg-gray-50">
                 <td className="px-6 py-4 font-medium text-gray-900">{lab.name}</td>
+                <td className="px-6 py-4 font-medium text-gray-900">{lab.professor}</td>
                 <td className="px-6 py-4">
                   <button onClick={() => onReviewClick(lab)} className="w-full text-left">
                     <DiamondPlus size={36} />
