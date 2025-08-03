@@ -24,7 +24,7 @@ const Header: FC = () => {
         <button onClick={() => setPage('home')} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors" title="ホーム">
           <Home className="h-5 w-5 text-gray-800 dark:text-white" />
         </button>
-        <button onClick={() => setPage('chart')} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors" title="レビューグラフ">
+        <button onClick={() => setPage('chart')} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors" title="マッチ度分析">
           <BarChart2 className="h-5 w-5 text-gray-800 dark:text-white" />
         </button>
         <button onClick={() => setPage('form')} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-gray-800 transition-colors" title="レビュー投稿">
