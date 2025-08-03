@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { DataProvider } from './contexts/DataContext.tsx'; // 作成したProviderをインポート
+import { ModalProvider } from './contexts/ModalContext.tsx'; // 作成したProviderをインポート
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <DataProvider>
-      <App />
+      <ModalProvider>
+        <App />
+      </ModalProvider>
     </DataProvider>
   </StrictMode>,
 )
