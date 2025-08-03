@@ -85,8 +85,10 @@ export default function App() {
         return () => unsubscribe();
     }, []);
 
+    const isDevMode = import.meta.env.VITE_DEV_MODE === 'true';
+
     // 認証状態を確認中はローディング画面を表示
-    if (authLoading) {
+    if (authLoading && !isDevMode) {
         return <div className="flex items-center justify-center h-screen">読み込み中...</div>;
     }
 
@@ -94,7 +96,7 @@ export default function App() {
         <div className="bg-gray-50 min-h-screen w-screen font-sans">
             <Header />
             {/* ユーザーがいればメインアプリを、いなければ認証ページを表示 */}
-            {user ? <MainApp /> : <AuthPage />}
+            {isDevMode || user ? <MainApp /> : <AuthPage />}
         </div>
     );
 }
