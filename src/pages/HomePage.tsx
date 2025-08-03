@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import type { FC } from 'react';
 import type { LabWithReview } from '.././types/'
 
-import { Search, Star } from 'lucide-react';
+import { Search, DiamondPlus } from 'lucide-react';
 
 import { useDataContext } from '.././contexts/DataContext';
 
@@ -53,7 +53,7 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">研究室名</th>
-              <th scope="col" className="px-6 py-3 whitespace-nowrap">教授レビュー</th>
+              <th scope="col" className="px-6 py-3 whitespace-nowrap">評価チャート</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap">研究内容</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap hidden md:table-cell">コアタイム</th>
               <th scope="col" className="px-6 py-3 whitespace-nowrap hidden lg:table-cell">スケジュール</th>
@@ -69,15 +69,7 @@ const HomePage: FC<HomePageProps> = ({ onReviewClick, onAwardsClick }) => {
                 <td className="px-6 py-4 font-medium text-gray-900">{lab.name}</td>
                 <td className="px-6 py-4">
                   <button onClick={() => onReviewClick(lab)} className="w-full text-left">
-                    <div className="flex items-center space-x-1">
-                        <Star className={`h-4 w-4 ${lab.avgStrict > 6 ? 'text-red-500 fill-current' : 'text-gray-300'}`} />
-                        <Star className={`h-4 w-4 ${lab.avgSupportive > 6 ? 'text-blue-500 fill-current' : 'text-gray-300'}`} />
-                        <span className="text-xs text-gray-500">({lab.reviewCount})</span>
-                    </div>
-                    <div className="text-xs mt-1">
-                        <p>厳しさ: {lab.avgStrict.toFixed(1)}</p>
-                        <p>手厚さ: {lab.avgSupportive.toFixed(1)}</p>
-                    </div>
+                    <DiamondPlus size={36} />
                   </button>
                 </td>
                 <td className="px-6 py-4">{lab.content}</td>
